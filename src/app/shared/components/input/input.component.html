@@ -1,0 +1,20 @@
+<div class="input-container">
+  @if (label) {
+  <div class="label-container">
+    <label class="label">{{ label }}</label>
+  </div>
+  }
+  <div class="input-wrapper">
+    <input
+      class="input"
+      [placeholder]="placeholder"
+      [value]="value"
+      (input)="handleInput($event)"
+      (blur)="handleBlur()"
+      [disabled]="disabled"
+    />
+    <div class="error-container">
+      <span class="error"> {{ errorMessage }} </span>
+    </div>
+  </div>
+</div>

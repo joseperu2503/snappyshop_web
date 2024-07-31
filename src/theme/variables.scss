@@ -1,0 +1,33 @@
+:root {
+  --primaryYankeesBlue: #9a1663;
+  --primaryPearlAqua: #8034da;
+  --primaryCultured: #f4f6fa;
+
+  --secondaryMangoTango: #e0144c;
+  --secondaryPastelRed: #ff6264;
+  --white: #ffffff;
+
+  --textYankeesBlue: #181a37;
+  --textArsenic: #3e424b;
+  --textCoolBlack: #07255b;
+  --textCultured: #f4f6fa;
+  --gray: #8b8b8b;
+
+  --star: #ff7a45;
+  --error: #f04438;
+  --success: #2aa952;
+
+  --backgroundColorDark: #232427;
+  --backgroundColor: #ffffff;
+
+  --textYankeesBlueDark: #ffffff;
+
+  --primaryCulturedDark: #2b3036;
+  --textCulturedDark: var(--primaryCulturedDark);
+
+  --textArsenicDark: #b5b8bd;
+
+  --textCoolBlackDark: #e7e7e7;
+  --bgInputDark: var(--primaryCulturedDark);
+  --bgInput: var(--primaryCultured);
+}

@@ -1,0 +1,21 @@
+<div class="page-content">
+  <form class="form" [formGroup]="form">
+    <h1 class="title">Log in</h1>
+
+    <p class="subtitle">Please enter your data to continue</p>
+
+    <app-input
+      formControlName="email"
+      label="Email"
+      placeholder="Your email"
+    ></app-input>
+    <app-input
+      formControlName="password"
+      label="Password"
+      placeholder="Password"
+    ></app-input>
+    <div style="height: 80px"></div>
+
+    <button class="button" (click)="login()">Log In</button>
+  </form>
+</div>
