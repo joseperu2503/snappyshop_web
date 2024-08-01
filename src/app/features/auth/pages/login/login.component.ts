@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
-export class LoginComponent {
+export default class LoginComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
 
