@@ -2,7 +2,7 @@ button {
   height: 52px;
   width: 100%;
   border-radius: 32px;
-  background-color: var(--primaryPearlAqua);
+  background-image: linear-gradient(to bottom right, #905bd2 0%, #8034da 100%);
 
   --mdc-text-button-label-text-color: var(--textCultured);
   --mdc-text-button-label-text-weight: 500;
