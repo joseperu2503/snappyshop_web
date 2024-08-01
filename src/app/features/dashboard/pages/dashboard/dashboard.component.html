@@ -1,1 +1,12 @@
-<p>dashboard works!</p>
+<div class="layout">
+  <header>
+    <span class="logo">SnappyShop</span>
+  </header>
+  <div class="body">
+    <div class="grid-container">
+      @for (product of products; track $index) {
+      <app-product-item [product]="product"> </app-product-item>
+      }
+    </div>
+  </div>
+</div>
