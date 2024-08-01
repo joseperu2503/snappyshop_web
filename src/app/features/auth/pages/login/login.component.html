@@ -18,6 +18,10 @@
     ></app-input>
     <div style="height: 80px"></div>
 
-    <button class="button" (click)="login()">Log In</button>
+    <app-button
+      text="Log In"
+      (click)="login()"
+      [loading]="loading"
+    ></app-button>
   </form>
 </div>

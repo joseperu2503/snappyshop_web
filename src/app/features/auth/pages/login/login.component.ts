@@ -8,17 +8,20 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { UtilService } from '../../../../shared/services/util/util.service';
+import { ButtonComponent } from '../../../../shared/components/button/button.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [InputComponent, ReactiveFormsModule],
+  imports: [InputComponent, ReactiveFormsModule, ButtonComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
 export default class LoginComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
+  private utilService = inject(UtilService);
 
   form = new FormGroup({
     email: new FormControl<string>('', {
@@ -31,12 +34,14 @@ export default class LoginComponent {
     }),
   });
 
+  loading: boolean = false;
+
   login() {
     if (!this.form.valid) {
       this.form.markAllAsTouched();
       return;
     }
-
+    this.loading = true;
     const { email, password } = this.form.getRawValue();
     this.authService
       .login({
@@ -44,9 +49,13 @@ export default class LoginComponent {
         password,
       })
       .subscribe({
-        next: (response) => {
-          console.log(response);
+        next: (_) => {
           this.router.navigate(['/dashboard']);
+          this.loading = false;
+        },
+        error: (error) => {
+          this.utilService.openSnackBar(error.error.message);
+          this.loading = false;
         },
       });
   }
