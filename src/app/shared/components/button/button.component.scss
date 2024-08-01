@@ -1,0 +1,19 @@
+button {
+  height: 52px;
+  width: 100%;
+  border-radius: 32px;
+  background-color: var(--primaryPearlAqua);
+
+  --mdc-text-button-label-text-color: var(--textCultured);
+  --mdc-text-button-label-text-weight: 500;
+  --mdc-text-button-label-text-size: 16px;
+
+  --mdc-text-button-label-text-font: "Poppins";
+  --mat-text-button-state-layer-color: black;
+
+  --mat-text-button-ripple-color: rgba(255, 255, 255, 0.2);
+  --mdc-text-button-label-text-tracking: 0px;
+  mat-spinner {
+    --mdc-circular-progress-active-indicator-color: #fff;
+  }
+}
