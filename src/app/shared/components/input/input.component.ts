@@ -34,6 +34,7 @@ export class InputComponent implements ControlValueAccessor {
   @Input() formControlName: string = '';
   @Input() errors = {};
   @Input() disabled: boolean = false;
+  @Input() name?: string;
 
   get innerErrors() {
     return {
