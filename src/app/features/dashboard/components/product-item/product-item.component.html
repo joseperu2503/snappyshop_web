@@ -1,9 +1,10 @@
-<div class="product-item">
-  <img [src]="product().images[0]" alt="" class="product-image" />
+<a class="product-item" [routerLink]="['/product', product().id]">
+  <img [src]="product().images[0]" alt="product-image" class="product-image" />
   <div class="product-info">
     <span class="product-name">{{ product().name }}</span>
-    <div>
-      <span class="product-price">{{ product().price }}</span>
+    <div class="product-price-row">
+      <p class="product-sale-price">{{ salePrice() | price }}</p>
+      <p class="product-base-price">{{ basePrice() | price }}</p>
     </div>
   </div>
-</div>
+</a>

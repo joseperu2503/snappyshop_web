@@ -1,7 +1,11 @@
-.product-item {
+a.product-item {
+  text-decoration: none;
+
   .product-image {
     width: 100%;
     border-radius: 15px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
   }
 
   .product-info {
@@ -16,11 +20,26 @@
       line-height: 1.4 * 12px;
     }
 
-    .product-price {
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--secondaryPastelRed);
-      line-height: 1.1 * 12px;
+    .product-price-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+
+      .product-sale-price {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--secondaryPastelRed);
+        line-height: 1.1 * 12px;
+      }
+
+      .product-base-price {
+        font-size: 12px;
+        font-weight: 400;
+        color: var(--textArsenic);
+        opacity: 0.5;
+        line-height: 1.1 * 20px;
+        text-decoration: line-through;
+      }
     }
   }
 }
