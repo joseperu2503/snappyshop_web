@@ -1,0 +1,59 @@
+.container {
+  display: flex;
+
+  .left {
+    flex: 1;
+  }
+
+  .right {
+    width: 344px;
+
+    .product-name {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--textYankeesBlue);
+      line-height: 1.1 * 20px;
+
+      margin-bottom: 8px;
+    }
+
+    .product-price-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 26px;
+
+      .product-sale-price {
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--secondaryPastelRed);
+        line-height: 1.6 * 20px;
+      }
+
+      .product-base-price {
+        font-size: 20px;
+        font-weight: 400;
+        color: var(--textArsenic);
+        opacity: 0.5;
+        line-height: 1.6 * 20px;
+        text-decoration: line-through;
+      }
+    }
+
+    .product-description-label {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--textYankeesBlue);
+      line-height: 1.1 * 20px;
+
+      margin-bottom: 10px;
+    }
+
+    .product-description {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--textArsenic);
+      line-height: 22px;
+    }
+  }
+}
