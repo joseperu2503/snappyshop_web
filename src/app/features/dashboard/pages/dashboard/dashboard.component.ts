@@ -4,13 +4,11 @@ import { Product } from '../../../product/dtos/products-response.dto';
 import { ProductItemComponent } from '../../components/product-item/product-item.component';
 import { LoadingStatus } from '../../../../core/enums/loading-status.enum';
 import { UtilService } from '../../../../shared/services/util/util.service';
-import { SearchInputComponent } from '../../components/search-input/search-input.component';
-import { SvgIconComponent } from 'angular-svg-icon';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [ProductItemComponent, SearchInputComponent, SvgIconComponent],
+  imports: [ProductItemComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
