@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { SvgIconComponent } from '../../../../shared/components/svg-icon/svg-icon.component';
+import { SvgIconComponent } from 'angular-svg-icon';
 
 @Component({
   selector: 'app-search-input',
   standalone: true,
-  imports: [SvgIconComponent],
+  imports: [SvgIconComponent, SvgIconComponent],
   templateUrl: './search-input.component.html',
   styleUrl: './search-input.component.scss',
 })
