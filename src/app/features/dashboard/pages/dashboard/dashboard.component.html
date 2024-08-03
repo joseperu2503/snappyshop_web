@@ -1,34 +1,5 @@
-<div class="layout">
-  <header>
-    <div class="header-content">
-      <img src="assets/images/logo.png" alt="logo" class="logo" />
-      <span class="snappyshop">SnappyShop</span>
-      <app-search-input></app-search-input>
-      <div class="spacer"></div>
-      <button class="heart-button center">
-        <svg-icon src="assets/icons/heart_outlined.svg" class="heart-icon"></svg-icon>
-      </button>
-
-      <button class="cart-button center">
-        <svg-icon
-          src="assets/icons/shopping_cart.svg"
-          class="cart-icon"
-        ></svg-icon>
-      </button>
-
-      <button class="profile-button center">
-        <svg-icon
-          src="assets/icons/profile.svg"
-          class="profile-icon"
-        ></svg-icon>
-      </button>
-    </div>
-  </header>
-  <div class="body">
-    <div class="grid-container">
-      @for (product of products(); track $index) {
-      <app-product-item [product]="product"> </app-product-item>
-      }
-    </div>
-  </div>
+<div class="grid-container">
+  @for (product of products(); track $index) {
+  <app-product-item [product]="product"> </app-product-item>
+  }
 </div>
