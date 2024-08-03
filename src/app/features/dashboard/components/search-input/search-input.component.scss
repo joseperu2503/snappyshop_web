@@ -3,29 +3,31 @@
   border-radius: 10px;
   display: flex;
   align-items: center;
-  padding-left: 15px;
+  position: relative;
+  width: 100%;
 
   .icon {
-    width: 28px;
-    height: 28px;
-    fill: red;
-    stroke: red;
-    --icon-color: red;
-    color: red;
-
-  }
-  ::ng-deep svg path {
-    fill: blue;
+    position: absolute;
+    z-index: 0;
+    left: 15px;
+    svg {
+      height: 28px;
+      width: 28px;
+      color: var(--textArsenic);
+      opacity: 0.5;
+    }
   }
 
   .input {
+    z-index: 1;
+
     width: 100%;
     height: 52px;
     background-color: transparent;
     border: none;
     outline: none;
     padding: 0;
-    padding-left: 10px;
+    padding-left: 10px + 28px + 15px;
     padding-right: 20px;
 
     font-size: 14px;
