@@ -2,10 +2,11 @@
   <header>
     <img src="assets/images/logo.png" alt="logo" class="logo" />
     <span class="snappyshop">SnappyShop</span>
+    <app-search-input></app-search-input>
   </header>
   <div class="body">
     <div class="grid-container">
-      @for (product of products; track $index) {
+      @for (product of products(); track $index) {
       <app-product-item [product]="product"> </app-product-item>
       }
     </div>

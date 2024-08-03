@@ -1,14 +1,15 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { ProductService } from '../../../product/services/product.service';
 import { Product } from '../../../product/dtos/products-response.dto';
 import { ProductItemComponent } from '../../components/product-item/product-item.component';
 import { LoadingStatus } from '../../../../core/enums/loading-status.enum';
 import { UtilService } from '../../../../shared/services/util/util.service';
+import { SearchInputComponent } from '../../components/search-input/search-input.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [ProductItemComponent],
+  imports: [ProductItemComponent, SearchInputComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
@@ -16,10 +17,10 @@ export default class DashboardComponent {
   private productService = inject(ProductService);
   private utilService = inject(UtilService);
 
-  products: Product[] = [];
-  page: number = 1;
-  totalPages: number = 1;
-  loading: LoadingStatus = LoadingStatus.None;
+  products = signal<Product[]>([]);
+  page = signal<number>(1);
+  totalPages = signal<number>(1);
+  loading = signal<LoadingStatus>(LoadingStatus.None);
 
   ngOnInit() {
     this.getProducts();
@@ -27,25 +28,25 @@ export default class DashboardComponent {
 
   getProducts() {
     if (this.page > this.totalPages) return;
-    if (this.loading == LoadingStatus.Loading) return;
+    if (this.loading() == LoadingStatus.Loading) return;
 
-    this.loading = LoadingStatus.Loading;
+    this.loading.set(LoadingStatus.Loading);
     this.productService
       .getProducts({
-        page: this.page,
+        page: this.page(),
       })
       .subscribe({
         next: (response) => {
-          this.page = this.page + 1;
-          this.totalPages = response.info.last_page;
-          this.products.push(...response.results);
-          this.loading = LoadingStatus.Sucess;
+          this.page.update((value) => value + 1);
+          this.totalPages.set(response.info.last_page);
+          this.products.update((value) => [...value, ...response.results]);
+          this.loading.set(LoadingStatus.Sucess);
         },
         error: (error) => {
           this.utilService.openSnackBar(
             'An error occurred while loading the products.'
           );
-          this.loading = LoadingStatus.Error;
+          this.loading.set(LoadingStatus.Error);
         },
       });
   }
