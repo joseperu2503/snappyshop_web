@@ -42,7 +42,7 @@ $snappyshop_web-theme: mat.define-theme(
 
 @font-face {
   font-family: "Poppins";
-  src: url("/assets/fonts/Poppins-Bold.ttf") format("ttf");
+  src: url("/assets/fonts/Poppins-Bold.ttf") format("ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }
@@ -85,6 +85,8 @@ $snappyshop_web-theme: mat.define-theme(
 * {
   font-family: "Poppins", sans-serif;
   box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .spacer {

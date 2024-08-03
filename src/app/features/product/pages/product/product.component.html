@@ -1,1 +1,18 @@
-<p>{{ productId() }}</p>
+<div>
+  <div class="container">
+    <div class="left">
+      <img [src]="product()?.images?.[0]" alt="" />
+    </div>
+    <div class="right">
+      <h1 class="product-name">{{ product()?.name }}</h1>
+      <div class="product-price-row">
+        <p class="product-sale-price">{{ salePrice() | price }}</p>
+        <p class="product-base-price">{{ basePrice() | price }}</p>
+      </div>
+      <p class="product-description-label">Description</p>
+      <p class="product-description">{{ product()?.description }}</p>
+      <div style="height: 80px;"></div>
+      <app-button text="Add to cart"></app-button>
+    </div>
+  </div>
+</div>
