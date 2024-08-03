@@ -86,3 +86,13 @@ $snappyshop_web-theme: mat.define-theme(
   font-family: "Poppins", sans-serif;
   box-sizing: border-box;
 }
+
+.spacer {
+  flex: 1;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
