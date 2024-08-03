@@ -18,6 +18,7 @@ header {
     display: flex;
     align-items: center;
     padding-inline: 24px;
+    gap: 8px;
 
     .logo {
       width: 24px;
@@ -37,6 +38,47 @@ header {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
+    }
+
+    .cart-button,
+    .heart-button {
+      width: 46px;
+      height: 46px;
+      border-radius: 100%;
+      background-color: transparent;
+      border: none;
+
+      .cart-icon,
+      .heart-icon {
+        height: 24px;
+        width: 24px;
+        svg {
+          height: 24px;
+          width: 24px;
+          color: var(--textYankeesBlue);
+        }
+      }
+    }
+
+    .profile-button {
+      width: 46px;
+      height: 46px;
+      border-radius: 100%;
+      background-color: var(--primaryCultured);
+      border: none;
+
+      .profile-icon {
+        height: 24px;
+        width: 24px;
+
+        svg {
+          height: 24px;
+          width: 24px;
+          color: var(--textArsenic);
+
+          opacity: 0.5;
+        }
+      }
     }
   }
 }
