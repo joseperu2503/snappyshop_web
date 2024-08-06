@@ -1,0 +1,20 @@
+.image-container {
+  background: var(--textCultured);
+  border-radius: var(--border-radius);
+  width: var(--width);
+  height: var(--height);
+
+  .image {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--border-radius);
+    object-fit: cover;
+    mix-blend-mode: multiply;
+  }
+}
+
+:host {
+  --border-radius: 15px;
+  --width: 100%;
+  --height: 100%;
+}
