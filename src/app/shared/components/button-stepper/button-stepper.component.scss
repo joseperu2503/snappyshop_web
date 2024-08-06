@@ -1,0 +1,35 @@
+.button-stepper {
+  width: 96px;
+  height: 36px;
+
+  background-color: var(--primaryCultured);
+  display: flex;
+  justify-content: space-between;
+  border-radius: 8px;
+  align-items: center;
+
+  button {
+    background-color: transparent;
+    border: none;
+    width: 36px;
+    height: 32px;
+    cursor: pointer;
+
+    .icon {
+      height: 18px;
+      width: 18px;
+      svg {
+        height: 18px;
+        width: 18px;
+        color: rgb(var(--textYankeesBlue));
+      }
+    }
+  }
+
+  .value {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(var(--textYankeesBlue));
+    line-height: 22px;
+  }
+}

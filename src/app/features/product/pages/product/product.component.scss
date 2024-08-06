@@ -125,10 +125,28 @@
         }
       }
 
-      .buttons {
+      .quantity-row {
+        display: flex;
+        padding: 12px 0 12px 0;
+        border-top: 1px solid rgb(var(--textCoolBlackDark));
+        border-bottom: 1px solid rgb(var(--textCoolBlackDark));
+        align-items: center;
+
+        .quantity-label {
+          font-size: 16px;
+          font-weight: 600;
+          color: rgb(var(--textYankeesBlue));
+          line-height: 1.1 * 20px;
+
+          flex: 1;
+        }
+      }
+
+      .buttons-row {
         display: flex;
         flex-direction: column;
         gap: 10px;
+        margin-top: 26px;
       }
 
       .product-description-label {
