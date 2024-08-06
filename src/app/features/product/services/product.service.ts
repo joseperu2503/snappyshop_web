@@ -4,7 +4,6 @@ import { HttpParams } from '@angular/common/http';
 import { ProductDetailDTO } from '../dtos/products-detail.dto';
 import { ProductsResponseDTO } from '../dtos/products-response.dto';
 import { ToggleFavoriteResponse } from '../dtos/toggle-favorite-response.dto';
-import { tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -54,22 +53,13 @@ export class ProductService {
   }
 
   toggleFavoriteProduct(productId: number, isFavorite: boolean) {
-    let httpParams = new HttpParams({
-      fromObject: {
-        is_favorite: isFavorite,
-        product_id: productId,
-      },
-    });
-
-    return this.api
-      .get<ToggleFavoriteResponse>(
-        `/products/toggle-favorite-product`,
-        httpParams
-      )
-      .pipe(
-        tap((response) => {
-          console.log('asdasd')
-        })
-      );
+    const body = {
+      is_favorite: isFavorite,
+      product_id: productId,
+    };
+    return this.api.post<ToggleFavoriteResponse>(
+      `products/toggle-favorite-product`,
+      body
+    );
   }
 }

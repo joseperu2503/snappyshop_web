@@ -10,7 +10,7 @@ export interface ProductDTO {
   readonly store: Store;
   readonly discount: number;
   readonly created_at: Date;
-  readonly is_favorite: boolean;
+  is_favorite: boolean;
 }
 
 interface Category {
