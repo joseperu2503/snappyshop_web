@@ -7,6 +7,8 @@ import {
   inject,
   input,
   signal,
+  effect,
+  SimpleChanges,
 } from '@angular/core';
 import { LoadingStatus } from '../../../../core/enums/loading-status.enum';
 import { ProductService } from '../../services/product.service';
@@ -51,6 +53,8 @@ export default class ProductComponent {
     transform: (value: string) => parseInt(value),
   });
 
+  constructor() {}
+
   loading = signal<LoadingStatus>(LoadingStatus.None);
   productDetail = signal<ProductDetailDTO | null>(null);
 
@@ -78,9 +82,7 @@ export default class ProductComponent {
     return this.product()!.price * (1 - this.product()!.discount / 100);
   });
 
-  ngOnInit() {
-    this.getProduct();
-  }
+  ngOnInit() {}
 
   getProduct() {
     this.loading.set(LoadingStatus.Loading);
@@ -115,5 +117,11 @@ export default class ProductComponent {
 
   slideToImage(imageIndex: number) {
     this.swiper.nativeElement.swiper.slideTo(imageIndex);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['productId']) {
+      this.getProduct();
+    }
   }
 }
