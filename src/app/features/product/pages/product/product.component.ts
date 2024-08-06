@@ -42,11 +42,11 @@ export default class ProductComponent {
   productDetail = signal<ProductDetailDTO | null>(null);
 
   product = computed<ProductDTO | null>(() => {
-    return this.productDetail()!.product;
+    return this.productDetail()?.product ?? null;
   });
 
   store = computed<Store | null>(() => {
-    return this.productDetail()!.store;
+    return this.productDetail()?.store ?? null;
   });
 
   basePrice = computed<number | null>(() => {

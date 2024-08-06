@@ -1,12 +1,10 @@
-<div>
-  <div class="container">
+<div class="content">
+  <div class="product-detail">
     <div class="left">
       <swiper-container [slidesPerView]="1" class="swiper-container" #swiper>
         @for (image of product()?.images; track $index) {
         <swiper-slide class="swiper-slide">
-          <div class="image-container">
-            <img [src]="image" alt="" class="product-image" />
-          </div>
+          <app-image [src]="image" alt="" class="product-image"></app-image>
         </swiper-slide>
         }
       </swiper-container>
@@ -39,5 +37,9 @@
       <div style="height: 80px"></div>
       <app-button text="Add to cart"></app-button>
     </div>
+  </div>
+
+  <div>
+
   </div>
 </div>

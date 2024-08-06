@@ -1,119 +1,119 @@
-.container {
+.content {
   display: flex;
-  gap: 40px;
-  .left {
-    flex: 1 1 0%;
+  flex-direction: column;
+
+  .product-detail {
     display: flex;
-    flex-direction: column;
-    align-items: stretch;
+    gap: 40px;
+    padding-bottom: 64px;
 
-    .swiper-container {
-      .swiper-slide {
-        width: 100% !important;
-        .image-container {
-          background: var(--textCultured);
-          border-radius: 15px;
+    .left {
+      flex: 1 1 0%;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
 
+      .swiper-container {
+        .swiper-slide {
+          width: 100% !important;
           .product-image {
-            width: 100%;
-            border-radius: 15px;
-            object-fit: cover;
-            mix-blend-mode: multiply;
+            --border-radius: 15px;
+            --object-fit: contain;
+          }
+        }
+      }
+
+      .images-preview-container {
+        margin-top: 20px;
+        .images-preview {
+          margin-right: 10px;
+          width: 100%;
+          display: flex;
+          gap: 6px;
+
+          .image-preview {
+            --width: 48px;
+            --height: 48px;
+            --border-radius: 8px;
+          }
+
+          .selected {
+            border: 1.8px solid var(--textYankeesBlue);
+            border-radius: 8px;
           }
         }
       }
     }
 
-    .images-preview-container {
-      margin-top: 20px;
-      .images-preview {
-        margin-right: 10px;
-        width: 100%;
+    .right {
+      width: 344px;
+
+      .store-header {
         display: flex;
-        gap: 6px;
-
-        .image-preview {
-          --width: 48px;
-          --height: 48px;
-          --border-radius: 8px;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+        .logo {
+          --width: 32px;
+          --height: 32px;
+          --border-radius: 4px;
+          --object-fit: contain;
         }
 
-        .selected {
-          border: 1.8px solid var(--textYankeesBlue);
-          border-radius: 8px;
+        .name {
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 18px;
         }
       }
-    }
-  }
 
-  .right {
-    width: 344px;
-
-    .store-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 12px;
-      .logo {
-        --width: 32px;
-        --height: 32px;
-        --border-radius: 4px;
-        --object-fit: contain;
-      }
-
-      .name {
-        font-size: 14px;
-        font-weight: 500;
-        line-height: 18px;
-      }
-    }
-
-    .product-name {
-      font-size: 20px;
-      font-weight: 600;
-      color: var(--textYankeesBlue);
-      line-height: 1.1 * 20px;
-
-      margin-bottom: 8px;
-    }
-
-    .product-price-row {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      margin-bottom: 26px;
-
-      .product-sale-price {
+      .product-name {
         font-size: 20px;
         font-weight: 600;
-        color: var(--secondaryPastelRed);
-        line-height: 1.6 * 20px;
+        color: var(--textYankeesBlue);
+        line-height: 1.1 * 20px;
+
+        margin-bottom: 8px;
       }
 
-      .product-base-price {
-        font-size: 20px;
+      .product-price-row {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-bottom: 26px;
+
+        .product-sale-price {
+          font-size: 20px;
+          font-weight: 600;
+          color: var(--secondaryPastelRed);
+          line-height: 1.6 * 20px;
+        }
+
+        .product-base-price {
+          font-size: 20px;
+          font-weight: 400;
+          color: var(--textArsenic);
+          opacity: 0.5;
+          line-height: 1.6 * 20px;
+          text-decoration: line-through;
+        }
+      }
+
+      .product-description-label {
+        font-size: 17px;
+        font-weight: 600;
+        color: var(--textYankeesBlue);
+        line-height: 1.1 * 20px;
+
+        margin-bottom: 10px;
+      }
+
+      .product-description {
+        font-size: 14px;
         font-weight: 400;
         color: var(--textArsenic);
-        opacity: 0.5;
-        line-height: 1.6 * 20px;
-        text-decoration: line-through;
+        line-height: 22px;
       }
-    }
-
-    .product-description-label {
-      font-size: 17px;
-      font-weight: 600;
-      color: var(--textYankeesBlue);
-      line-height: 1.1 * 20px;
-
-      margin-bottom: 10px;
-    }
-
-    .product-description {
-      font-size: 14px;
-      font-weight: 400;
-      color: var(--textArsenic);
-      line-height: 22px;
     }
   }
 }
