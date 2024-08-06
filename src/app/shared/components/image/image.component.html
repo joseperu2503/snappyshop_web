@@ -1,3 +1,8 @@
 <div class="image-container">
-  <img [src]="src()" alt="" class="image" />
+  <img
+    [src]="src()"
+    alt=""
+    class="image"
+    [ngClass]="{ 'with-zoom': withZoom() }"
+  />
 </div>
