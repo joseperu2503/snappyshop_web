@@ -38,7 +38,7 @@
           }
 
           .selected {
-            border: 1.8px solid var(--textYankeesBlue);
+            border: 1.8px solid rgb(var(--textYankeesBlue));
             border-radius: 8px;
           }
         }
@@ -67,13 +67,39 @@
         }
       }
 
-      .product-name {
-        font-size: 20px;
-        font-weight: 600;
-        color: var(--textYankeesBlue);
-        line-height: 1.1 * 20px;
+      .product-name-container {
+        display: flex;
+        gap: 16px;
+        .product-name {
+          font-size: 20px;
+          font-weight: 600;
+          color: rgb(var(--textYankeesBlue));
+          line-height: 1.1 * 20px;
 
-        margin-bottom: 8px;
+          margin-bottom: 8px;
+          flex: 1;
+        }
+
+        .heart-button {
+          width: 42px;
+          min-width: 42px;
+          height: 42px;
+          border-radius: 100%;
+          padding: 0;
+
+          border: 1.8px solid rgba(var(--textYankeesBlue), 0.3);
+          background-color: transparent;
+
+          .heart-icon {
+            height: 18px;
+            width: 18px;
+            svg {
+              height: 18px;
+              width: 18px;
+              color: rgb(var(--textYankeesBlue));
+            }
+          }
+        }
       }
 
       .product-price-row {
@@ -99,12 +125,19 @@
         }
       }
 
+      .buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
       .product-description-label {
         font-size: 17px;
         font-weight: 600;
-        color: var(--textYankeesBlue);
+        color: rgb(var(--textYankeesBlue));
         line-height: 1.1 * 20px;
 
+        margin-top: 32px;
         margin-bottom: 10px;
       }
 

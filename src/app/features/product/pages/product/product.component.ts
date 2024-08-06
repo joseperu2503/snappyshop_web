@@ -19,11 +19,20 @@ import { Swiper } from 'swiper/types';
 import { CommonModule } from '@angular/common';
 import { ProductDTO } from '../../dtos/product.dto';
 import { ProductDetailDTO, Store } from '../../dtos/products-detail.dto';
+import { SvgIconComponent } from 'angular-svg-icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [PricePipe, ButtonComponent, ImageComponent, CommonModule],
+  imports: [
+    PricePipe,
+    ButtonComponent,
+    ImageComponent,
+    CommonModule,
+    SvgIconComponent,
+    MatButtonModule,
+  ],
   templateUrl: './product.component.html',
   styleUrl: './product.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
