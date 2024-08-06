@@ -1,7 +1,28 @@
 <div>
   <div class="container">
     <div class="left">
-      <img [src]="product()?.images?.[0]" alt="" class="product-image"/>
+      <swiper-container [slidesPerView]="1" class="swiper-container" #swiper>
+        @for (image of product()?.images; track $index) {
+        <swiper-slide class="swiper-slide">
+          <div class="image-container">
+            <img [src]="image" alt="" class="product-image" />
+          </div>
+        </swiper-slide>
+        }
+      </swiper-container>
+      <div class="images-preview-container">
+        <div class="images-preview">
+          @for (image of product()?.images; track $index) {
+          <div [ngClass]="{ selected: imageIndex() == $index }">
+            <app-image
+              [src]="image"
+              class="image-preview"
+              (click)="slideToImage($index)"
+            ></app-image>
+          </div>
+          }
+        </div>
+      </div>
     </div>
     <div class="right">
       <h1 class="product-name">{{ product()?.name }}</h1>
@@ -11,7 +32,7 @@
       </div>
       <p class="product-description-label">Description</p>
       <p class="product-description">{{ product()?.description }}</p>
-      <div style="height: 80px;"></div>
+      <div style="height: 80px"></div>
       <app-button text="Add to cart"></app-button>
     </div>
   </div>

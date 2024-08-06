@@ -1,16 +1,53 @@
 .container {
   display: flex;
-
+  gap: 40px;
   .left {
-    flex: 1;
-    .product-image{
-      width: 100%;
+    flex: 1 1 0%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    .swiper-container {
+      .swiper-slide {
+        width: 100% !important;
+        .image-container {
+          background: var(--textCultured);
+          border-radius: 15px;
+
+          .product-image {
+            width: 100%;
+            border-radius: 15px;
+            object-fit: cover;
+            mix-blend-mode: multiply;
+          }
+        }
+      }
+    }
+
+    .images-preview-container {
+      margin-top: 20px;
+      .images-preview {
+        margin-right: 10px;
+        width: 100%;
+        display: flex;
+        gap: 6px;
+
+        .image-preview {
+          --width: 48px;
+          --height: 48px;
+          --border-radius: 8px;
+        }
+
+        .selected {
+          border: 1.8px solid var(--textYankeesBlue);
+          border-radius: 8px;
+        }
+      }
     }
   }
 
   .right {
     width: 344px;
-
     .product-name {
       font-size: 20px;
       font-weight: 600;
