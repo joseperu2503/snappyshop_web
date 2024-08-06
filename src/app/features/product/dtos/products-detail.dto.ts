@@ -2,7 +2,7 @@ import { ProductDTO } from './product.dto';
 
 export interface ProductDetailDTO {
   readonly product: ProductDTO;
-  readonly store_related_products: ProductDTO[];
+  store_related_products: ProductDTO[];
   readonly store: Store;
 }
 

@@ -98,6 +98,21 @@
               width: 18px;
               color: rgb(var(--textYankeesBlue));
             }
+
+            &.solid {
+              svg {
+                color: var(--white);
+              }
+            }
+            &.outlined {
+              svg {
+                color: rgb(var(--textYankeesBlue));
+              }
+            }
+          }
+
+          &.is-favorite {
+            background-color: var(--primaryPearlAqua);
           }
         }
       }

@@ -3,6 +3,7 @@ import { ProductDTO } from '../dtos/product.dto';
 import { LoadingStatus } from '../../../core/enums/loading-status.enum';
 import { ProductService } from '../services/product.service';
 import { UtilService } from '../../../shared/services/util/util.service';
+import { ProductDetailDTO } from '../dtos/products-detail.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -14,15 +15,18 @@ export class ProductStore {
   private utilService = inject(UtilService);
 
   products = signal<ProductDTO[]>([]);
+  productDetails = signal<ProductDetailDTO[]>([]);
+
   page = signal<number>(1);
   totalPages = signal<number>(1);
-  loading = signal<LoadingStatus>(LoadingStatus.None);
+  loadingProducts = signal<LoadingStatus>(LoadingStatus.None);
+  loadingProduct = signal<LoadingStatus>(LoadingStatus.None);
 
   getProducts() {
     if (this.page > this.totalPages) return;
-    if (this.loading() == LoadingStatus.Loading) return;
+    if (this.loadingProducts() == LoadingStatus.Loading) return;
 
-    this.loading.set(LoadingStatus.Loading);
+    this.loadingProducts.set(LoadingStatus.Loading);
     this.productService
       .getProducts({
         page: this.page(),
@@ -32,14 +36,14 @@ export class ProductStore {
           this.page.update((value) => value + 1);
           this.totalPages.set(response.info.last_page);
           this.products.update((value) => [...value, ...response.results]);
-          this.loading.set(LoadingStatus.Sucess);
+          this.loadingProducts.set(LoadingStatus.Sucess);
           this.handleScroll();
         },
         error: (error) => {
           this.utilService.openSnackBar(
             'An error occurred while loading the products.'
           );
-          this.loading.set(LoadingStatus.Error);
+          this.loadingProducts.set(LoadingStatus.Error);
         },
       });
   }
@@ -65,13 +69,60 @@ export class ProductStore {
       });
     });
 
+    this.productDetails.update((value) => {
+      return value.map((value) => {
+        if (value.product.id === productId) {
+          value.product.is_favorite = isFavorite;
+        }
+
+        value.store_related_products = [...value.store_related_products].map(
+          (value) => {
+            if (value.id === productId) {
+              value.is_favorite = isFavorite;
+            }
+            return value;
+          }
+        );
+
+        return value;
+      });
+    });
+
     this.productService.toggleFavoriteProduct(productId, isFavorite).subscribe({
       next: (response) => {},
       error: (error) => {
         this.utilService.openSnackBar(
           'An error occurred while setting up the product.'
         );
-        this.loading.set(LoadingStatus.Error);
+        this.loadingProducts.set(LoadingStatus.Error);
+      },
+    });
+  }
+
+  getProduct(productId: number) {
+    this.loadingProduct.set(LoadingStatus.Loading);
+
+    const productIndex = this.productDetails().findIndex(
+      (productDetail) => productDetail.product.id === productId
+    );
+
+    if (productIndex >= 0) {
+      this.loadingProduct.set(LoadingStatus.Sucess);
+      return;
+    }
+
+    this.productService.getProduct(productId).subscribe({
+      next: (response) => {
+        this.productDetails.update((value) => {
+          return [...value, response];
+        });
+        this.loadingProduct.set(LoadingStatus.Sucess);
+      },
+      error: (error) => {
+        this.utilService.openSnackBar(
+          'An error occurred while loading the product.'
+        );
+        this.loadingProduct.set(LoadingStatus.Error);
       },
     });
   }
