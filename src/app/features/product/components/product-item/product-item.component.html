@@ -10,7 +10,17 @@
       [ngClass]="{ 'is-favorite': product().is_favorite }"
       (click)="toggleFavorite($event)"
     >
-      <svg-icon [src]="icon()" class="heart-icon"></svg-icon>
+      @if (product().is_favorite) {
+      <svg-icon
+        src="assets/icons/heart_solid.svg"
+        class="heart-icon"
+      ></svg-icon>
+      }@else{
+      <svg-icon
+        src="assets/icons/heart_outlined.svg"
+        class="heart-icon"
+      ></svg-icon>
+      }
     </button>
   </div>
   <div class="product-info">
