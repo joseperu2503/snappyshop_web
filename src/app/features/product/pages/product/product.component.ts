@@ -11,13 +11,14 @@ import {
 import { LoadingStatus } from '../../../../core/enums/loading-status.enum';
 import { ProductService } from '../../services/product.service';
 import { UtilService } from '../../../../shared/services/util/util.service';
-import { Product } from '../../dtos/products-response.dto';
 import { PricePipe } from '../../../../core/pipes/price/price.pipe';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
 import { ImageComponent } from '../../../../shared/components/image/image.component';
 import { SwiperContainer } from 'swiper/element';
 import { Swiper } from 'swiper/types';
 import { CommonModule } from '@angular/common';
+import { ProductDTO } from '../../dtos/product.dto';
+import { ProductDetailDTO, Store } from '../../dtos/products-detail.dto';
 
 @Component({
   selector: 'app-product',
@@ -38,7 +39,15 @@ export default class ProductComponent {
   });
 
   loading = signal<LoadingStatus>(LoadingStatus.None);
-  product = signal<Product | null>(null);
+  productDetail = signal<ProductDetailDTO | null>(null);
+
+  product = computed<ProductDTO | null>(() => {
+    return this.productDetail()!.product;
+  });
+
+  store = computed<Store | null>(() => {
+    return this.productDetail()!.store;
+  });
 
   basePrice = computed<number | null>(() => {
     if (!this.product()) return null;
@@ -64,7 +73,7 @@ export default class ProductComponent {
     this.loading.set(LoadingStatus.Loading);
     this.productService.getProduct(this.productId()).subscribe({
       next: (response) => {
-        this.product.set(response);
+        this.productDetail.set(response);
         this.loading.set(LoadingStatus.Sucess);
       },
       error: (error) => {

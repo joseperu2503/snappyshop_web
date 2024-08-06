@@ -1,9 +1,9 @@
 import { Component, inject, signal } from '@angular/core';
 import { ProductService } from '../../../product/services/product.service';
-import { Product } from '../../../product/dtos/products-response.dto';
 import { ProductItemComponent } from '../../components/product-item/product-item.component';
 import { LoadingStatus } from '../../../../core/enums/loading-status.enum';
 import { UtilService } from '../../../../shared/services/util/util.service';
+import { ProductDTO } from '../../../product/dtos/product.dto';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,7 +16,7 @@ export default class DashboardComponent {
   private productService = inject(ProductService);
   private utilService = inject(UtilService);
 
-  products = signal<Product[]>([]);
+  products = signal<ProductDTO[]>([]);
   page = signal<number>(1);
   totalPages = signal<number>(1);
   loading = signal<LoadingStatus>(LoadingStatus.None);

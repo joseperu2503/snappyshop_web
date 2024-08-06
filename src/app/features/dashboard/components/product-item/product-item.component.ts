@@ -1,7 +1,7 @@
 import { Component, computed, input } from '@angular/core';
-import { Product } from '../../../product/dtos/products-response.dto';
 import { RouterLink } from '@angular/router';
 import { PricePipe } from '../../../../core/pipes/price/price.pipe';
+import { ProductDTO } from '../../../product/dtos/product.dto';
 
 @Component({
   selector: 'app-product-item',
@@ -11,7 +11,7 @@ import { PricePipe } from '../../../../core/pipes/price/price.pipe';
   styleUrl: './product-item.component.scss',
 })
 export class ProductItemComponent {
-  public product = input.required<Product>();
+  public product = input.required<ProductDTO>();
 
   basePrice = computed<number | null>(() => {
     if (!this.product()) return null;

@@ -25,6 +25,10 @@
       </div>
     </div>
     <div class="right">
+      <div class="store-header">
+        <app-image [src]="store()?.isotype" class="logo"></app-image>
+        <p class="name">{{ store()?.name }}</p>
+      </div>
       <h1 class="product-name">{{ product()?.name }}</h1>
       <div class="product-price-row">
         <p class="product-sale-price">{{ salePrice() | price }}</p>
