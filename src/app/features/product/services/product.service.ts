@@ -1,7 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { ApiService } from '../../../core/services/api/api.service';
-import { Product, ProductsResponseDTO } from '../dtos/products-response.dto';
 import { HttpParams } from '@angular/common/http';
+import { ProductDetailDTO } from '../dtos/products-detail.dto';
+import { ProductsResponseDTO } from '../dtos/products-response.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -47,6 +48,6 @@ export class ProductService {
   }
 
   getProduct(productId: number) {
-    return this.api.get<Product>(`products/${productId}`);
+    return this.api.get<ProductDetailDTO>(`products/${productId}`);
   }
 }

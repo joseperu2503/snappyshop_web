@@ -8,5 +8,5 @@ import { Component, input } from '@angular/core';
   styleUrl: './image.component.scss',
 })
 export class ImageComponent {
-  public src = input.required<string>();
+  public src = input.required<string | null | undefined>();
 }
