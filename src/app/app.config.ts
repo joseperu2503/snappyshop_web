@@ -8,9 +8,10 @@ import {
 } from '@angular/router';
 
 import { routes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideAngularSvgIcon } from 'angular-svg-icon';
+import { tokenInterceptor } from './core/interceptors/token/token.interceptor';
 
 const scrollConfig: InMemoryScrollingOptions = {
   scrollPositionRestoration: 'enabled',
@@ -27,7 +28,7 @@ export const appConfig: ApplicationConfig = {
       withComponentInputBinding(),
       inMemoryScrollingFeature
     ),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([tokenInterceptor])),
     provideAnimationsAsync(),
     provideAngularSvgIcon(),
   ],
