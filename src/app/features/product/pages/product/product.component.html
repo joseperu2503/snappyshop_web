@@ -50,11 +50,20 @@
         <app-button type="secondary" text="Buy now"></app-button>
       </div>
 
-      <p class="product-description-label">Description</p>
+      <p class="product-description-label subtitle-label">Description</p>
       <p class="product-description">{{ product()?.description }}</p>
       <div style="height: 80px"></div>
     </div>
   </div>
 
-  <div></div>
+  <div>
+    <p class="store-related-products-label subtitle-label">
+      More from {{ store()?.name }}
+    </p>
+    <div class="grid-container">
+      @for (product of productDetail()?.store_related_products; track $index) {
+      <app-product-item [product]="product"> </app-product-item>
+      }
+    </div>
+  </div>
 </div>

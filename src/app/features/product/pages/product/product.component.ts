@@ -22,6 +22,7 @@ import { ProductDetailDTO, Store } from '../../dtos/products-detail.dto';
 import { SvgIconComponent } from 'angular-svg-icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ButtonStepperComponent } from '../../../../shared/components/button-stepper/button-stepper.component';
+import { ProductItemComponent } from '../../../dashboard/components/product-item/product-item.component';
 
 @Component({
   selector: 'app-product',
@@ -34,6 +35,7 @@ import { ButtonStepperComponent } from '../../../../shared/components/button-ste
     SvgIconComponent,
     MatButtonModule,
     ButtonStepperComponent,
+    ProductItemComponent,
   ],
   templateUrl: './product.component.html',
   styleUrl: './product.component.scss',

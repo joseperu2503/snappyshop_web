@@ -6,7 +6,7 @@
       font-size: 14px;
       line-height: 22px;
       font-weight: 500;
-      color: var(--textArsenic);
+      color: rgb(var(--textArsenic));
     }
   }
 
@@ -23,7 +23,7 @@
     line-height: 22px;
 
     &::placeholder {
-      color: var(--textArsenic);
+      color: rgb(var(--textArsenic));
       opacity: 0.5;
       font-size: 14px;
       line-height: 22px;
