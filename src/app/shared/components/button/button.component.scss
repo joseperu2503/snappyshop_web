@@ -2,17 +2,29 @@ button {
   height: 52px;
   width: 100%;
   border-radius: 32px;
-  background-image: linear-gradient(to bottom right, #905bd2 0%, #8034da 100%);
-
-  --mdc-text-button-label-text-color: var(--textCultured);
-  --mdc-text-button-label-text-weight: 500;
-  --mdc-text-button-label-text-size: 16px;
-
   --mdc-text-button-label-text-font: "Poppins";
-  --mat-text-button-state-layer-color: black;
-
   --mat-text-button-ripple-color: rgba(255, 255, 255, 0.2);
   --mdc-text-button-label-text-tracking: 0px;
+  --mdc-text-button-label-text-weight: 500;
+  --mdc-text-button-label-text-size: 16px;
+  &.primary {
+    background-image: linear-gradient(
+      to bottom right,
+      #905bd2 0%,
+      #8034da 100%
+    );
+
+    --mdc-text-button-label-text-color: var(--textCultured);
+    --mat-text-button-state-layer-color: black;
+  }
+
+  &.secondary {
+    background-color: rgb(var(--textYankeesBlue));
+
+    --mdc-text-button-label-text-color: var(--textYankeesBlueDark);
+    --mat-text-button-state-layer-color: black;
+  }
+
   mat-spinner {
     --mdc-circular-progress-active-indicator-color: #fff;
   }

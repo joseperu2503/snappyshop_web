@@ -1,7 +1,7 @@
-<button mat-button>
-  @if (loading) {
+<button mat-button [ngClass]="[type()]">
+  @if (loading()) {
   <mat-spinner diameter="28" color="#ffffff"></mat-spinner>
   } @else{
-  {{ text }}
+  {{ text() }}
   }
 </button>
