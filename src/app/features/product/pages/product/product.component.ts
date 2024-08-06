@@ -7,12 +7,9 @@ import {
   inject,
   input,
   signal,
-  effect,
   SimpleChanges,
 } from '@angular/core';
 import { LoadingStatus } from '../../../../core/enums/loading-status.enum';
-import { ProductService } from '../../services/product.service';
-import { UtilService } from '../../../../shared/services/util/util.service';
 import { PricePipe } from '../../../../core/pipes/price/price.pipe';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
 import { ImageComponent } from '../../../../shared/components/image/image.component';
@@ -25,6 +22,7 @@ import { SvgIconComponent } from 'angular-svg-icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ButtonStepperComponent } from '../../../../shared/components/button-stepper/button-stepper.component';
 import { ProductItemComponent } from '../../components/product-item/product-item.component';
+import { ProductStore } from '../../stores/product.store';
 
 @Component({
   selector: 'app-product',
@@ -44,9 +42,8 @@ import { ProductItemComponent } from '../../components/product-item/product-item
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export default class ProductComponent {
-  private productService = inject(ProductService);
-  private utilService = inject(UtilService);
-  imageIndex = signal<number>(0);
+  productStore = inject(ProductStore);
+
   @ViewChild('swiper') swiper!: ElementRef<SwiperContainer>;
 
   public productId = input.required<number, string>({
@@ -55,8 +52,14 @@ export default class ProductComponent {
 
   constructor() {}
 
+  imageIndex = signal<number>(0);
   loading = signal<LoadingStatus>(LoadingStatus.None);
-  productDetail = signal<ProductDetailDTO | null>(null);
+
+  productDetail = computed<ProductDetailDTO | undefined>(() => {
+    return this.productStore
+      .productDetails()
+      .find((productDetail) => productDetail.product.id === this.productId());
+  });
 
   product = computed<ProductDTO | null>(() => {
     return this.productDetail()?.product ?? null;
@@ -82,24 +85,6 @@ export default class ProductComponent {
     return this.product()!.price * (1 - this.product()!.discount / 100);
   });
 
-  ngOnInit() {}
-
-  getProduct() {
-    this.loading.set(LoadingStatus.Loading);
-    this.productService.getProduct(this.productId()).subscribe({
-      next: (response) => {
-        this.productDetail.set(response);
-        this.loading.set(LoadingStatus.Sucess);
-      },
-      error: (error) => {
-        this.utilService.openSnackBar(
-          'An error occurred while loading the product.'
-        );
-        this.loading.set(LoadingStatus.Error);
-      },
-    });
-  }
-
   ngAfterViewInit() {
     this.swiper.nativeElement.swiper.on(
       'slideNextTransitionEnd',
@@ -121,7 +106,16 @@ export default class ProductComponent {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['productId']) {
-      this.getProduct();
+      this.productStore.getProduct(this.productId());
     }
+  }
+
+  toggleFavorite(): void {
+    if (!this.product()) return;
+
+    this.productStore.toggleFavoriteProduct(
+      this.product()!.id,
+      !this.product()!.is_favorite
+    );
   }
 }
