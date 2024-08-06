@@ -40,6 +40,7 @@ export default class DashboardComponent {
           this.totalPages.set(response.info.last_page);
           this.products.update((value) => [...value, ...response.results]);
           this.loading.set(LoadingStatus.Sucess);
+          this.handleScroll();
         },
         error: (error) => {
           this.utilService.openSnackBar(
