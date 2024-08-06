@@ -98,3 +98,10 @@ $snappyshop_web-theme: mat.define-theme(
   justify-content: center;
   align-items: center;
 }
+
+.subtitle-label {
+  font-size: 17px;
+  font-weight: 600;
+  color: rgb(var(--textYankeesBlue));
+  line-height: 1.1 * 20px;
+}

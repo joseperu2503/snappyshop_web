@@ -2,17 +2,48 @@ a.product-item {
   text-decoration: none;
 
   .image-container {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    background: var(--textCultured);
-    border-radius: 15px;
+    position: relative;
 
-    .product-image {
-      width: 100%;
-      height: 100%;
-      border-radius: 15px;
-      object-fit: cover;
-      mix-blend-mode: multiply;
+    .discount {
+      position: absolute;
+      top: 10px;
+      left: 8px;
+      background-color: var(--secondaryMangoTango);
+      border-radius: 50px;
+      padding: 6px;
+
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--white);
+      line-height: 11px;
+    }
+
+    .heart-button {
+      position: absolute;
+      z-index: 10;
+      bottom: 8px;
+      right: 8px;
+
+      width: 32px;
+      height: 32px;
+      border-radius: 100%;
+      padding: 0;
+
+      background-color: rgba(var(--textArsenic), 0.3);
+
+      .heart-icon {
+        height: 18px;
+        width: 18px;
+        svg {
+          height: 18px;
+          width: 18px;
+          color: var(--white);
+        }
+      }
+
+      &.is-favorite {
+        background-color: var(--primaryPearlAqua);
+      }
     }
   }
 
@@ -43,7 +74,7 @@ a.product-item {
       .product-base-price {
         font-size: 12px;
         font-weight: 400;
-        color: var(--textArsenic);
+        color: rgb(var(--textArsenic));
         opacity: 0.5;
         line-height: 1.1 * 20px;
         text-decoration: line-through;

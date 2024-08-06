@@ -118,7 +118,7 @@
         .product-base-price {
           font-size: 20px;
           font-weight: 400;
-          color: var(--textArsenic);
+          color: rgb(var(--textArsenic));
           opacity: 0.5;
           line-height: 1.6 * 20px;
           text-decoration: line-through;
@@ -150,11 +150,6 @@
       }
 
       .product-description-label {
-        font-size: 17px;
-        font-weight: 600;
-        color: rgb(var(--textYankeesBlue));
-        line-height: 1.1 * 20px;
-
         margin-top: 32px;
         margin-bottom: 10px;
       }
@@ -162,9 +157,19 @@
       .product-description {
         font-size: 14px;
         font-weight: 400;
-        color: var(--textArsenic);
+        color: rgb(var(--textArsenic));
         line-height: 22px;
       }
     }
+  }
+
+  .store-related-products-label {
+    margin-bottom: 10px;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 16px;
   }
 }

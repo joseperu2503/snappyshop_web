@@ -1,10 +1,17 @@
 <a class="product-item" [routerLink]="['/product', product().id]">
   <div class="image-container">
-    <img
-      [src]="product().images[0]"
-      alt="product-image"
-      class="product-image"
-    />
+    <app-image [src]="product().images[0]"></app-image>
+    @if (product().discount) {
+    <div class="discount">{{ product().discount }}% off</div>
+    }
+    <button
+      mat-icon-button
+      class="heart-button center"
+      [ngClass]="{ 'is-favorite': product().is_favorite }"
+      (click)="toggleFavorite($event)"
+    >
+      <svg-icon [src]="icon()" class="heart-icon"></svg-icon>
+    </button>
   </div>
   <div class="product-info">
     <span class="product-name">{{ product().name }}</span>

@@ -13,7 +13,7 @@
     svg {
       height: 28px;
       width: 28px;
-      color: var(--textArsenic);
+      color: rgb(var(--textArsenic));
       opacity: 0.5;
     }
   }
@@ -30,14 +30,15 @@
     padding-left: 10px + 28px + 15px;
     padding-right: 20px;
 
-    font-size: 14px;
+    font-size: 15px;
     line-height: 22px;
     color: rgb(var(--textYankeesBlue));
 
     &::placeholder {
-      color: var(--textArsenic);
+      color: rgb(var(--textArsenic));
       opacity: 0.5;
-      font-size: 14px;
+      font-size: 15px;
+      font-weight: 500;
       line-height: 22px;
     }
   }
