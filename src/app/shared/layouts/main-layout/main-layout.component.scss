@@ -51,14 +51,16 @@ header {
     .heart-button {
       width: 46px;
       height: 46px;
-      border-radius: 100%;
       background-color: transparent;
+      border-radius: 100%;
       border: none;
+      cursor: pointer;
 
       .cart-icon,
       .heart-icon {
         height: 24px;
         width: 24px;
+
         svg {
           height: 24px;
           width: 24px;
@@ -73,19 +75,26 @@ header {
       border-radius: 100%;
       background-color: var(--primaryCultured);
       border: none;
+      cursor: pointer;
 
-      .profile-icon {
-        height: 24px;
-        width: 24px;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 14px;
+      color: rgb(var(--textArsenic));
+    }
 
-        svg {
-          height: 24px;
-          width: 24px;
-          color: rgb(var(--textArsenic));
+    .button-login {
+      width: 72px;
+      height: 34px;
+      border-radius: 10px;
+      border: 1px solid rgba(var(--textYankeesBlue), 0.3);
+      background-color: transparent;
+      cursor: pointer;
 
-          opacity: 0.5;
-        }
-      }
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 14px;
+      color: rgb(var(--textArsenic));
     }
   }
 }
