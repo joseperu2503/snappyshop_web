@@ -6,6 +6,7 @@ import { UserService } from '../../../features/user/services/user.service';
 import { MatRippleModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../../../features/auth/services/auth.service';
+import { UserButtonComponent } from '../../components/user-button/user-button.component';
 
 @Component({
   selector: 'app-main-layout',
@@ -17,6 +18,7 @@ import { AuthService } from '../../../features/auth/services/auth.service';
     RouterLink,
     MatRippleModule,
     MatButtonModule,
+    UserButtonComponent,
   ],
   templateUrl: './main-layout.component.html',
   styleUrl: './main-layout.component.scss',
