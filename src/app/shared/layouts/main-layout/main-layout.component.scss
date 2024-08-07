@@ -10,7 +10,7 @@ header {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 10;
+  z-index: 100;
 
   .header-content {
     position: relative;
@@ -67,20 +67,6 @@ header {
           color: rgb(var(--textYankeesBlue));
         }
       }
-    }
-
-    .profile-button {
-      width: 46px;
-      height: 46px;
-      border-radius: 100%;
-      background-color: var(--primaryCultured);
-      border: none;
-      cursor: pointer;
-
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 14px;
-      color: rgb(var(--textArsenic));
     }
 
     .button-login {

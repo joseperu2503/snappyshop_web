@@ -1,0 +1,23 @@
+<div class="user-button-container" (clickOutside)="closeMenu()">
+  <button class="user-button center" (click)="toggleMenu()">
+    {{ userService.user()!.name[0] }}
+  </button>
+  <div class="menu-container">
+    <div class="menu" [ngClass]="{ show: showMenu() }">
+      @for (menuItem of menuItems(); track $index) {
+      <button class="menu-item" matRipple (click)="onClickMenuItem(menuItem)">
+        <svg-icon [src]="menuItem.icon" class="menu-item-icon"></svg-icon>
+        <p class="menu-item-label">{{ menuItem.label }}</p>
+      </button>
+      }
+      <div style="height: 24px"></div>
+      <button class="menu-item" matRipple>
+        <svg-icon
+          src="assets/icons/logout.svg"
+          class="menu-item-icon"
+        ></svg-icon>
+        <p class="menu-item-label">Logout</p>
+      </button>
+    </div>
+  </div>
+</div>

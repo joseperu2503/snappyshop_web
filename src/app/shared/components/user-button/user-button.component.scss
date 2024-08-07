@@ -1,0 +1,78 @@
+.user-button-container {
+  .user-button {
+    width: 46px;
+    height: 46px;
+    border-radius: 100%;
+    background-color: var(--primaryCultured);
+    border: none;
+    cursor: pointer;
+
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 14px;
+    color: rgb(var(--textArsenic));
+  }
+  .menu-container {
+    position: relative;
+    .menu {
+      top: 12px;
+      right: 0;
+      position: absolute;
+      width: 300px;
+      background-color: var(--white);
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+        0 4px 6px -4px rgb(0 0 0 / 0.1);
+      border-radius: 15px;
+
+      padding: 8px 8px 16px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 0px;
+      height: 0;
+      width: 0;
+
+      overflow: hidden;
+      opacity: 0;
+
+      &.show {
+        height: min-content;
+        width: 300px;
+        opacity: 1;
+      }
+      transition: opacity 0.15s ease-in-out;
+
+      .menu-item {
+        display: flex;
+        gap: 12px;
+        height: 52px;
+        background-color: transparent;
+        border: none;
+        align-items: center;
+        border-radius: 12px;
+        padding: 8px 16px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: var(--primaryCultured);
+        }
+        .menu-item-icon {
+          height: 24px;
+          width: 24px;
+
+          svg {
+            height: 24px;
+            width: 24px;
+            color: rgb(var(--textYankeesBlue));
+          }
+        }
+
+        .menu-item-label {
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 16px;
+          color: rgb(var(--textArsenic));
+        }
+      }
+    }
+  }
+}

@@ -23,9 +23,7 @@
       </button>
 
       @if (userService.user()) {
-      <button class="profile-button center">
-        {{ userService.user()!.name[0] }}
-      </button>
+      <app-user-button></app-user-button>
       }@else {
       <button matRipple class="button-login" (click)="login()">Log in</button>
       }
