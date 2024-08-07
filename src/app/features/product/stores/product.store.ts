@@ -4,6 +4,8 @@ import { LoadingStatus } from '../../../core/enums/loading-status.enum';
 import { ProductService } from '../services/product.service';
 import { UtilService } from '../../../shared/services/util/util.service';
 import { ProductDetailDTO } from '../dtos/products-detail.dto';
+import { AuthService } from '../../auth/services/auth.service';
+import { UserService } from '../../user/services/user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +15,8 @@ export class ProductStore {
 
   private productService = inject(ProductService);
   private utilService = inject(UtilService);
+  userService = inject(UserService);
+  authService = inject(AuthService);
 
   products = signal<ProductDTO[]>([]);
   productDetails = signal<ProductDetailDTO[]>([]);
@@ -60,6 +64,11 @@ export class ProductStore {
   }
 
   toggleFavoriteProduct(productId: number, isFavorite: boolean) {
+    if (!this.userService.user()) {
+      this.authService.openLoginDialog();
+      return;
+    }
+
     this.products.update((value) => {
       return value.map((value) => {
         if (value.id === productId) {

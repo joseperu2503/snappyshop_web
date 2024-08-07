@@ -8,14 +8,14 @@
 
       <app-search-input></app-search-input>
       <div class="spacer"></div>
-      <button matRipple class="heart-button center">
+      <button matRipple class="heart-button center" (click)="goToWishlist()">
         <svg-icon
           src="assets/icons/heart_outlined.svg"
           class="heart-icon"
         ></svg-icon>
       </button>
 
-      <button matRipple class="cart-button center">
+      <button matRipple class="cart-button center" (click)="goToCart()">
         <svg-icon
           src="assets/icons/shopping_cart.svg"
           class="cart-icon"
@@ -27,7 +27,7 @@
         {{ userService.user()!.name[0] }}
       </button>
       }@else {
-      <button matRipple class="button-login">Log in</button>
+      <button matRipple class="button-login" (click)="login()">Log in</button>
       }
     </div>
   </header>

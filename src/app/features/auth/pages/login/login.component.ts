@@ -10,6 +10,7 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { UtilService } from '../../../../shared/services/util/util.service';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +23,9 @@ export default class LoginComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
   private utilService = inject(UtilService);
+  dialogRef: MatDialogRef<LoginComponent, boolean> = inject(
+    MatDialogRef<LoginComponent, boolean>
+  );
 
   form = new FormGroup({
     email: new FormControl<string>('', {
@@ -50,7 +54,7 @@ export default class LoginComponent {
       })
       .subscribe({
         next: (_) => {
-          this.router.navigate(['/dashboard']);
+          this.dialogRef.close(true);
           this.loading = false;
         },
         error: (error) => {
