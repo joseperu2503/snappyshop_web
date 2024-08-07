@@ -4,12 +4,8 @@ import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.co
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: '/dashboard',
     pathMatch: 'full',
-  },
-  {
-    path: 'login',
-    loadComponent: () => import('./features/auth/pages/login/login.component'),
   },
   {
     path: '',
