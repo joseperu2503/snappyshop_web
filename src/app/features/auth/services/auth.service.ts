@@ -4,8 +4,9 @@ import { LoginResponseDTO } from '../dtos/login-response.dto';
 import { ApiService } from '../../../core/services/api/api.service';
 import { tap } from 'rxjs';
 import { TokenService } from '../../../core/services/token/token.service';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import LoginComponent from '../pages/login/login.component';
+import { UserService } from '../../user/services/user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +14,8 @@ import LoginComponent from '../pages/login/login.component';
 export class AuthService {
   private api = inject(ApiService);
   private tokenService = inject(TokenService);
+  private userService = inject(UserService);
+
   readonly dialog = inject(MatDialog);
 
   login(data: LoginFormDTO) {
@@ -24,13 +27,24 @@ export class AuthService {
   }
 
   openLoginDialog(): void {
-    const dialogRef = this.dialog.open(LoginComponent, {
-      width: '100%',
-      maxWidth: '420px',
-    });
+    const dialogRef: MatDialogRef<LoginComponent, boolean> = this.dialog.open(
+      LoginComponent,
+      {
+        width: '100%',
+        maxWidth: '420px',
+      }
+    );
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
+      if (result) {
+        window.location.reload();
+      }
     });
+  }
+
+  logout() {
+    this.tokenService.removeToken();
+    this.userService.removeStorageUser();
+    window.location.reload();
   }
 }
