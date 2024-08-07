@@ -67,9 +67,11 @@ export class UserButtonComponent {
       onPress: () => {},
     },
     {
-      icon: 'assets/icons/settings.svg',
-      label: 'Settings',
-      onPress: () => {},
+      icon: 'assets/icons/logout.svg',
+      label: 'Logout',
+      onPress: () => {
+        this.authService.logout();
+      },
     },
   ]);
 }
