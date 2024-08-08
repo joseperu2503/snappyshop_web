@@ -114,7 +114,7 @@ export default class ProductComponent {
     if (!this.product()) return;
 
     this.productStore.toggleFavoriteProduct(
-      this.product()!.id,
+      this.product()!,
       !this.product()!.is_favorite
     );
   }

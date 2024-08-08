@@ -48,6 +48,21 @@ export class ProductService {
     return this.api.get<ProductsResponseDTO>(`products`, httpParams);
   }
 
+  getFavoriteProducts(
+    query: {
+      page: number;
+    } = {
+      page: 1,
+    }
+  ) {
+    let httpParams = new HttpParams().set('page', query.page.toString());
+
+    return this.api.get<ProductsResponseDTO>(
+      `products/my-favorite-products`,
+      httpParams
+    );
+  }
+
   getProduct(productId: number) {
     return this.api.get<ProductDetailDTO>(`products/${productId}`);
   }
