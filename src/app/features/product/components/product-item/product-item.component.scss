@@ -3,6 +3,11 @@ a.product-item {
 
   .image-container {
     position: relative;
+    aspect-ratio: 1;
+
+    app-image {
+      --object-fit: cover;
+    }
 
     .discount {
       position: absolute;

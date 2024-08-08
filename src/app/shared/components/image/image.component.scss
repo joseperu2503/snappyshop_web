@@ -1,19 +1,25 @@
 .image-container {
-  background: var(--textCultured);
   border-radius: var(--border-radius);
   width: var(--width);
   height: var(--height);
   overflow: hidden;
-  .image {
+
+  .background-container {
     width: 100%;
     height: 100%;
-    border-radius: var(--border-radius);
-    object-fit: var(--object-fit);
-    mix-blend-mode: multiply;
+    background: var(--textCultured);
+
+    .image {
+      width: 100%;
+      height: 100%;
+      border-radius: var(--border-radius);
+      object-fit: var(--object-fit);
+      mix-blend-mode: multiply;
+    }
 
     &.with-zoom {
       &:hover {
-        transform: scale(1.1);
+        transform: scale(1.05);
       }
       transition: ease-in-out 0.15s;
     }

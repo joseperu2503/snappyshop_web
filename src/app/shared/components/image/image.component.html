@@ -1,10 +1,7 @@
 <div class="image-container">
-  @if (src()) {
-  <img
-    [src]="src()"
-    alt=""
-    class="image"
-    [ngClass]="{ 'with-zoom': withZoom() }"
-  />
-  }
+  <div class="background-container" [ngClass]="{ 'with-zoom': withZoom() }">
+    @if (src()) {
+    <img [src]="src()" alt="" class="image" />
+    }
+  </div>
 </div>
