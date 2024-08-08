@@ -6,15 +6,16 @@ import { UtilService } from '../../../shared/services/util/util.service';
 import { ProductDetailDTO } from '../dtos/products-detail.dto';
 import { AuthService } from '../../auth/services/auth.service';
 import { UserService } from '../../user/services/user.service';
+import { WishlistStore } from '../../wishlist/stores/wishlist.store';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductStore {
-  constructor() {}
-
   private productService = inject(ProductService);
   private utilService = inject(UtilService);
+  private wishlistStore = inject(WishlistStore);
+
   userService = inject(UserService);
   authService = inject(AuthService);
 
@@ -63,49 +64,51 @@ export class ProductStore {
     }
   }
 
-  toggleFavoriteProduct(productId: number, isFavorite: boolean) {
+  toggleFavoriteProduct(product: ProductDTO, isFavorite: boolean) {
     if (!this.userService.user()) {
       this.authService.openLoginDialog();
       return;
     }
 
     this.products.update((value) => {
-      return value.map((value) => {
-        if (value.id === productId) {
-          value.is_favorite = isFavorite;
+      return value.map((p) => {
+        if (p.id === product.id) {
+          p.is_favorite = isFavorite;
         }
-        return value;
+        return p;
       });
     });
 
     this.productDetails.update((value) => {
-      return value.map((value) => {
-        if (value.product.id === productId) {
-          value.product.is_favorite = isFavorite;
+      return value.map((p) => {
+        if (p.product.id === product.id) {
+          p.product.is_favorite = isFavorite;
         }
 
-        value.store_related_products = [...value.store_related_products].map(
-          (value) => {
-            if (value.id === productId) {
-              value.is_favorite = isFavorite;
-            }
-            return value;
+        p.store_related_products = [...p.store_related_products].map((p) => {
+          if (p.id === product.id) {
+            p.is_favorite = isFavorite;
           }
-        );
+          return p;
+        });
 
-        return value;
+        return p;
       });
     });
 
-    this.productService.toggleFavoriteProduct(productId, isFavorite).subscribe({
-      next: (response) => {},
-      error: (error) => {
-        this.utilService.openSnackBar(
-          'An error occurred while setting up the product.'
-        );
-        this.loadingProducts.set(LoadingStatus.Error);
-      },
-    });
+    this.wishlistStore.toggleFavoriteProduct(product, isFavorite);
+
+    this.productService
+      .toggleFavoriteProduct(product.id, isFavorite)
+      .subscribe({
+        next: (response) => {},
+        error: (error) => {
+          this.utilService.openSnackBar(
+            'An error occurred while setting up the product.'
+          );
+          this.loadingProducts.set(LoadingStatus.Error);
+        },
+      });
   }
 
   getProduct(productId: number) {

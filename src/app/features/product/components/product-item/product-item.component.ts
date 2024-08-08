@@ -44,7 +44,7 @@ export class ProductItemComponent {
     event.stopPropagation();
     event.preventDefault();
     this.productStore.toggleFavoriteProduct(
-      this.product().id,
+      this.product(),
       !this.product().is_favorite
     );
   }
