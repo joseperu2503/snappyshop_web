@@ -56,12 +56,16 @@ a.product-item {
     height: 80px;
     padding: 8px 0;
     .product-name {
-      margin-bottom: 8px;
+      margin-bottom: 6px;
 
       font-size: 12px;
       font-weight: 500;
       color: var(--textCoolBlack);
-      line-height: 1.4 * 12px;
+      line-height: 14px;
+
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .product-price-row {
