@@ -7,6 +7,7 @@ import { ProductDetailDTO } from '../dtos/products-detail.dto';
 import { AuthService } from '../../auth/services/auth.service';
 import { UserService } from '../../user/services/user.service';
 import { WishlistStore } from '../../wishlist/stores/wishlist.store';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -111,31 +112,31 @@ export class ProductStore {
       });
   }
 
-  getProduct(productId: number) {
-    this.loadingProduct.set(LoadingStatus.Loading);
+  async getProduct(productId: number) {
+    try {
+      this.loadingProduct.set(LoadingStatus.Loading);
 
-    const productIndex = this.productDetails().findIndex(
-      (productDetail) => productDetail.product.id === productId
-    );
+      const productIndex = this.productDetails().findIndex(
+        (productDetail) => productDetail.product.id === productId
+      );
 
-    if (productIndex >= 0) {
-      this.loadingProduct.set(LoadingStatus.Sucess);
-      return;
-    }
-
-    this.productService.getProduct(productId).subscribe({
-      next: (response) => {
-        this.productDetails.update((value) => {
-          return [...value, response];
-        });
+      if (productIndex >= 0) {
         this.loadingProduct.set(LoadingStatus.Sucess);
-      },
-      error: (error) => {
-        this.utilService.openSnackBar(
-          'An error occurred while loading the product.'
-        );
-        this.loadingProduct.set(LoadingStatus.Error);
-      },
-    });
+        return;
+      }
+
+      const response = await firstValueFrom(
+        this.productService.getProduct(productId)
+      );
+      this.productDetails.update((value) => {
+        return [...value, response];
+      });
+      this.loadingProduct.set(LoadingStatus.Sucess);
+    } catch (error) {
+      this.utilService.openSnackBar(
+        'An error occurred while loading the product.'
+      );
+      this.loadingProduct.set(LoadingStatus.Error);
+    }
   }
 }

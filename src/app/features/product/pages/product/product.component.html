@@ -1,13 +1,16 @@
 <div class="content">
   <div class="product-detail">
     <div class="left">
-      <swiper-container [slidesPerView]="1" class="swiper-container" #swiper>
-        @for (image of product()?.images; track $index) {
-        <swiper-slide class="swiper-slide">
-          <app-image [src]="image" alt="" class="product-image"></app-image>
-        </swiper-slide>
-        }
-      </swiper-container>
+      <div class="swiper-container">
+        <swiper-container [slidesPerView]="1" #swiper>
+          @for (image of product()?.images; track $index) {
+          <swiper-slide class="swiper-slide">
+            <app-image [src]="image" alt="" class="product-image"></app-image>
+          </swiper-slide>
+          }
+        </swiper-container>
+      </div>
+
       <div class="images-preview-container">
         <div class="images-preview">
           @for (image of product()?.images; track $index) {
@@ -24,10 +27,17 @@
     </div>
     <div class="right">
       <div class="store-header">
+        @if (loading() == LoadingStatus.Loading) {
+        <div class="skeleton"></div>
+        }@else{
         <app-image [src]="store()?.isotype" class="logo"></app-image>
         <p class="name">{{ store()?.name }}</p>
+        }
       </div>
       <div class="product-name-container">
+        @if (loading() == LoadingStatus.Loading) {
+        <div class="skeleton"></div>
+        }@else{
         <h1 class="product-name">{{ product()?.name }}</h1>
         <button
           mat-icon-button
@@ -47,6 +57,7 @@
           ></svg-icon>
           }
         </button>
+        }
       </div>
       <div class="product-price-row">
         <p class="product-sale-price">{{ salePrice() | price }}</p>
