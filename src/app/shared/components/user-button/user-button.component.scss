@@ -18,11 +18,10 @@
       top: 12px;
       right: 0;
       position: absolute;
-      width: 300px;
       background-color: var(--white);
       box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
         0 4px 6px -4px rgb(0 0 0 / 0.1);
-      border-radius: 15px;
+      border-radius: 10px;
 
       padding: 8px 8px 16px 8px;
       display: flex;
@@ -48,7 +47,7 @@
         background-color: transparent;
         border: none;
         align-items: center;
-        border-radius: 12px;
+        border-radius: 10px;
         padding: 8px 16px;
         cursor: pointer;
 

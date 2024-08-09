@@ -1,45 +1,115 @@
-.input-container {
-  background-color: var(--bgInput);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  position: relative;
-  width: 100%;
+.search-input-container {
+  .input-container {
+    background-color: var(--bgInput);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
 
-  .icon {
-    position: absolute;
-    z-index: 0;
-    left: 15px;
-    svg {
-      height: 28px;
-      width: 28px;
-      color: rgb(var(--textArsenic));
-      opacity: 0.5;
+    .icon {
+      position: absolute;
+      z-index: 0;
+      left: 15px;
+      svg {
+        height: 28px;
+        width: 28px;
+        color: rgb(var(--textArsenic));
+        opacity: 0.5;
+      }
+    }
+
+    .input {
+      z-index: 1;
+
+      width: 100%;
+      height: 52px;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      padding: 0;
+      padding-left: 10px + 28px + 15px;
+      padding-right: 20px;
+
+      font-size: 15px;
+      line-height: 22px;
+      color: rgb(var(--textYankeesBlue));
+
+      &::placeholder {
+        color: rgb(var(--textArsenic));
+        opacity: 0.5;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 22px;
+      }
     }
   }
 
-  .input {
-    z-index: 1;
+  .menu-container {
+    position: relative;
+    .menu {
+      top: 12px;
+      right: 0;
+      position: absolute;
+      background-color: var(--white);
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+        0 4px 6px -4px rgb(0 0 0 / 0.1);
+      border-radius: 10px;
 
-    width: 100%;
-    height: 52px;
-    background-color: transparent;
-    border: none;
-    outline: none;
-    padding: 0;
-    padding-left: 10px + 28px + 15px;
-    padding-right: 20px;
+      padding: 8px 8px 16px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 0px;
+      height: 0;
 
-    font-size: 15px;
-    line-height: 22px;
-    color: rgb(var(--textYankeesBlue));
+      overflow: hidden;
+      opacity: 0;
+      width: 100%;
 
-    &::placeholder {
-      color: rgb(var(--textArsenic));
-      opacity: 0.5;
-      font-size: 15px;
-      font-weight: 500;
-      line-height: 22px;
+      &.show {
+        height: min-content;
+        opacity: 1;
+      }
+
+      .menu-item {
+        display: flex;
+        gap: 12px;
+        height: 52px;
+        background-color: transparent;
+        border: none;
+        align-items: center;
+        border-radius: 10px;
+        padding: 8px 16px;
+        cursor: pointer;
+        text-decoration: none;
+
+        &:hover {
+          background-color: var(--primaryCultured);
+        }
+        .menu-item-image {
+          width: 40px;
+          aspect-ratio: 1;
+
+          --border-radius: 8px;
+        }
+
+        .menu-item-label {
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 16px;
+          color: rgb(var(--textArsenic));
+        }
+      }
+
+      .more-results {
+        margin-top: 18px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 16px;
+        color: rgb(var(--textYankeesBlue));
+
+        text-align: center;
+      }
     }
   }
 }
