@@ -1,0 +1,8 @@
+<div>
+  <h2 class="title">Results</h2>
+  <div class="grid-container">
+    @for (product of searchStore.products(); track $index) {
+    <app-product-item [product]="product"> </app-product-item>
+    }
+  </div>
+</div>

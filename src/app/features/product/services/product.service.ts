@@ -18,7 +18,7 @@ export class ProductService {
       brandId?: number;
       minPrice?: number;
       maxPrice?: number;
-      search?: string;
+      search?: string | null;
     } = {
       page: 1,
     }
@@ -41,7 +41,7 @@ export class ProductService {
       httpParams = httpParams.set('maxPrice', query.maxPrice.toString());
     }
 
-    if (query.search !== undefined) {
+    if (query.search) {
       httpParams = httpParams.set('search', query.search);
     }
 

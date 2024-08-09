@@ -4,6 +4,7 @@ import { UtilService } from '../../../shared/services/util/util.service';
 import { ProductService } from '../../product/services/product.service';
 import { ProductDTO } from '../../product/dtos/product.dto';
 import * as _ from 'lodash';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -11,36 +12,65 @@ import * as _ from 'lodash';
 export class SearchStore {
   private productService = inject(ProductService);
   private utilService = inject(UtilService);
+  private router = inject(Router);
 
   products = signal<ProductDTO[]>([]);
+  preResults = signal<ProductDTO[]>([]);
+  private totalPagesPre = signal<ProductDTO[]>([]);
 
   private page = signal<number>(1);
   private totalPages = signal<number>(1);
   loadingProducts = signal<LoadingStatus>(LoadingStatus.None);
+  searchingProducts = signal<LoadingStatus>(LoadingStatus.None);
 
+  searchInput = signal<string>('');
   filter = signal<Filter>({
     search: '',
   });
 
-  changeSearch(search: string) {
-    this.filter.update((value) => {
-      value.search = search;
-      return value;
-    });
-
-    if (search == '') {
-      this.products.set([]);
-      return;
-    }
-
-    this.changeFilter();
-  }
-
-  changeFilter() {
+  changeFilter(filter: Filter) {
+    this.filter.set(filter);
+    this.searchInput.set(this.filter().search ?? '');
     this.products.set([]);
     this.page.set(1);
     this.totalPages.set(1);
     this.getProducts();
+  }
+
+  viewMoreResults() {
+    this.router.navigate(['/search'], {
+      queryParams: { q: this.searchInput() },
+      queryParamsHandling: 'merge',
+    });
+  }
+
+  searchProducts(search: string) {
+    this.searchInput.set(search);
+
+    this.preResults.set([]);
+
+    if (search == '') return;
+
+    this.searchingProducts.set(LoadingStatus.Loading);
+    this.productService
+      .getProducts({
+        page: 1,
+        search: this.searchInput(),
+      })
+      .subscribe({
+        next: (response) => {
+          if (search === this.searchInput()) {
+            this.preResults.set(response.results);
+            this.searchingProducts.set(LoadingStatus.Sucess);
+          }
+        },
+        error: (error) => {
+          this.utilService.openSnackBar(
+            'An error occurred while loading the products.'
+          );
+          this.searchingProducts.set(LoadingStatus.Error);
+        },
+      });
   }
 
   getProducts() {
@@ -55,11 +85,13 @@ export class SearchStore {
       })
       .subscribe({
         next: (response) => {
+          console.log(filter, this.filter());
           if (_.isEqual(filter, this.filter())) {
             this.page.update((value) => value + 1);
             this.totalPages.set(response.info.last_page);
             this.products.update((value) => [...value, ...response.results]);
             this.loadingProducts.set(LoadingStatus.Sucess);
+            this.handleScroll();
           }
         },
         error: (error) => {
@@ -81,19 +113,8 @@ export class SearchStore {
       this.getProducts();
     }
   }
-
-  toggleFavoriteProduct(product: ProductDTO, isFavorite: boolean) {
-    this.products.update((value) => {
-      value = value.filter((p) => p.id != product.id);
-      if (isFavorite) {
-        return [...value, product];
-      }
-
-      return value;
-    });
-  }
 }
 
 interface Filter {
-  search: string;
+  search?: string | null;
 }
