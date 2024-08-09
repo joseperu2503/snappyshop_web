@@ -1,5 +1,8 @@
 <div class="grid-container">
   @for (product of productStore.products(); track $index) {
   <app-product-item [product]="product"> </app-product-item>
-  }
+  } @if (productStore.loadingProducts() == LoadingStatus.Loading) { @for (item
+  of [].constructor(10) ; track $index) {
+  <app-product-skeleton> </app-product-skeleton>
+  } }
 </div>

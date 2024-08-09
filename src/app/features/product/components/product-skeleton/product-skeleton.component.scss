@@ -1,0 +1,29 @@
+.product-item {
+  .image-container {
+    aspect-ratio: 1;
+    background-color: var(--primaryCultured);
+    border-radius: 15px;
+  }
+
+  .product-info {
+    height: 80px;
+    padding: 8px 0;
+    .product-name {
+      margin-bottom: 7px;
+      margin-top: 1px;
+      height: 12px;
+      background-color: var(--primaryCultured);
+      width: 85%;
+      border-radius: 4px;
+    }
+
+    .product-price {
+      margin-bottom: 1px;
+      margin-top: 1px;
+      height: 12px;
+      background-color: var(--primaryCultured);
+      width: 80px;
+      border-radius: 4px;
+    }
+  }
+}
