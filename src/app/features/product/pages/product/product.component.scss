@@ -14,6 +14,10 @@
       align-items: stretch;
 
       .swiper-container {
+        aspect-ratio: 1;
+        background-color: var(--primaryCultured);
+        border-radius: 15px;
+
         .swiper-slide {
           width: 100% !important;
           .product-image {
@@ -53,6 +57,7 @@
         align-items: center;
         gap: 8px;
         margin-bottom: 12px;
+        height: 32px;
         .logo {
           --width: 32px;
           --height: 32px;
@@ -65,16 +70,24 @@
           font-weight: 500;
           line-height: 18px;
         }
+
+        .skeleton {
+          background-color: var(--primaryCultured);
+          width: 160px;
+          height: 32px;
+          border-radius: 4px;
+        }
       }
 
       .product-name-container {
         display: flex;
         gap: 16px;
+        min-height: 42px;
         .product-name {
-          font-size: 20px;
+          font-size: 18px;
           font-weight: 600;
           color: rgb(var(--textYankeesBlue));
-          line-height: 1.1 * 20px;
+          line-height: 20px;
 
           margin-bottom: 8px;
           flex: 1;
@@ -115,6 +128,13 @@
             background-color: var(--primaryPearlAqua);
           }
         }
+
+        .skeleton {
+          background-color: var(--primaryCultured);
+          width: 200px;
+          height: 18px;
+          border-radius: 4px;
+        }
       }
 
       .product-price-row {
@@ -122,12 +142,13 @@
         gap: 10px;
         align-items: center;
         margin-bottom: 26px;
+        min-height: 32px;
 
         .product-sale-price {
           font-size: 20px;
           font-weight: 600;
           color: var(--secondaryPastelRed);
-          line-height: 1.6 * 20px;
+          line-height: 32px;
         }
 
         .product-base-price {
@@ -135,7 +156,7 @@
           font-weight: 400;
           color: rgb(var(--textArsenic));
           opacity: 0.5;
-          line-height: 1.6 * 20px;
+          line-height: 32px;
           text-decoration: line-through;
         }
       }

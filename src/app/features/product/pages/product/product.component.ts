@@ -23,6 +23,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ButtonStepperComponent } from '../../../../shared/components/button-stepper/button-stepper.component';
 import { ProductItemComponent } from '../../components/product-item/product-item.component';
 import { ProductStore } from '../../stores/product.store';
+import { take, pipe } from 'rxjs';
 
 @Component({
   selector: 'app-product',
@@ -50,11 +51,9 @@ export default class ProductComponent {
     transform: (value: string) => parseInt(value),
   });
 
-  constructor() {}
-
   imageIndex = signal<number>(0);
   loading = signal<LoadingStatus>(LoadingStatus.None);
-
+  LoadingStatus = LoadingStatus;
   productDetail = computed<ProductDetailDTO | undefined>(() => {
     return this.productStore
       .productDetails()
@@ -106,8 +105,14 @@ export default class ProductComponent {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['productId']) {
-      this.productStore.getProduct(this.productId());
+      this.getProduct();
     }
+  }
+
+  async getProduct() {
+    this.loading.set(LoadingStatus.Loading);
+    await this.productStore.getProduct(this.productId());
+    this.loading.set(LoadingStatus.Sucess);
   }
 
   toggleFavorite(): void {
