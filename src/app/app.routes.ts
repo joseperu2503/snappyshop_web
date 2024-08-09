@@ -26,6 +26,11 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/wishlist/pages/wishlist/wishlist.component'),
       },
+      {
+        path: 'search',
+        loadComponent: () =>
+          import('./features/search/pages/search/search.component'),
+      },
     ],
   },
 ];

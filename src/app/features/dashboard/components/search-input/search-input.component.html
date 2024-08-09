@@ -1,20 +1,22 @@
 <div class="search-input-container" (clickOutside)="closeMenu()">
-  <div class="input-container" (click)="openMenu()">
+  <div class="input-container">
     <svg-icon src="assets/icons/search.svg" class="icon"></svg-icon>
     <input
       class="input"
       placeholder="Search"
-      [value]="searchStore.filter().search"
+      [value]="searchStore.searchInput()"
       (input)="changeInput($event)"
+      (keydown.enter)="onSubmit()"
+      (focus)="onFocus()"
     />
   </div>
 
   <div class="menu-container">
     <div
       class="menu"
-      [ngClass]="{ show: showMenu() && searchStore.products().length > 0 }"
+      [ngClass]="{ show: showMenu() && searchStore.preResults().length > 0 }"
     >
-      @for (product of searchStore.products(); track $index) {
+      @for (product of searchStore.preResults(); track $index) {
       <a
         class="menu-item"
         matRipple
@@ -29,7 +31,7 @@
       </a>
       }
 
-      <a class="more-results" routerLink="/search">View more results</a>
+      <p class="more-results" (click)="viewMoreResults()">View more results</p>
     </div>
   </div>
 </div>
