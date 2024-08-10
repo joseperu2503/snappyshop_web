@@ -29,7 +29,7 @@ export class ProductStore {
   loadingProduct = signal<LoadingStatus>(LoadingStatus.None);
 
   getProducts() {
-    if (this.page > this.totalPages) return;
+    if (this.page() > this.totalPages()) return;
     if (this.loadingProducts() == LoadingStatus.Loading) return;
 
     this.loadingProducts.set(LoadingStatus.Loading);
