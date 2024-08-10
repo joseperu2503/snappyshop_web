@@ -20,6 +20,8 @@
 
         .swiper-slide {
           width: 100% !important;
+          aspect-ratio: 1;
+
           .product-image {
             --border-radius: 15px;
             --object-fit: contain;
@@ -70,19 +72,13 @@
           font-weight: 500;
           line-height: 18px;
         }
-
-        .skeleton {
-          background-color: var(--primaryCultured);
-          width: 160px;
-          height: 32px;
-          border-radius: 4px;
-        }
       }
 
       .product-name-container {
         display: flex;
         gap: 16px;
         min-height: 42px;
+        justify-content: space-between;
         .product-name {
           font-size: 18px;
           font-weight: 600;
@@ -128,13 +124,6 @@
             background-color: var(--primaryPearlAqua);
           }
         }
-
-        .skeleton {
-          background-color: var(--primaryCultured);
-          width: 200px;
-          height: 18px;
-          border-radius: 4px;
-        }
       }
 
       .product-price-row {
@@ -167,14 +156,13 @@
         border-top: 1px solid rgb(var(--textCoolBlackDark));
         border-bottom: 1px solid rgb(var(--textCoolBlackDark));
         align-items: center;
+        justify-content: center;
 
         .quantity-label {
           font-size: 16px;
           font-weight: 600;
           color: rgb(var(--textYankeesBlue));
-          line-height: 1.1 * 20px;
-
-          flex: 1;
+          line-height: 22px;
         }
       }
 
@@ -185,22 +173,26 @@
         margin-top: 26px;
       }
 
-      .product-description-label {
+      .description-container {
         margin-top: 32px;
-        margin-bottom: 10px;
-      }
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
 
-      .product-description {
-        font-size: 14px;
-        font-weight: 400;
-        color: rgb(var(--textArsenic));
-        line-height: 22px;
+        .description {
+          font-size: 14px;
+          font-weight: 400;
+          color: rgb(var(--textArsenic));
+          line-height: 22px;
+        }
       }
     }
   }
 
   .store-related-products-label {
-    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 
   .grid-container {

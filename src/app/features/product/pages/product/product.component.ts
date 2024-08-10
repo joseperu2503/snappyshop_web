@@ -23,7 +23,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { ButtonStepperComponent } from '../../../../shared/components/button-stepper/button-stepper.component';
 import { ProductItemComponent } from '../../components/product-item/product-item.component';
 import { ProductStore } from '../../stores/product.store';
-import { take, pipe } from 'rxjs';
+import { SharedModule } from '../../../../shared/shared.module';
+import { ProductSkeletonComponent } from '../../components/product-skeleton/product-skeleton.component';
 
 @Component({
   selector: 'app-product',
@@ -37,6 +38,8 @@ import { take, pipe } from 'rxjs';
     MatButtonModule,
     ButtonStepperComponent,
     ProductItemComponent,
+    SharedModule,
+    ProductSkeletonComponent,
   ],
   templateUrl: './product.component.html',
   styleUrl: './product.component.scss',
@@ -67,6 +70,8 @@ export default class ProductComponent {
   store = computed<Store | null>(() => {
     return this.productDetail()?.store ?? null;
   });
+
+  math = Math;
 
   basePrice = computed<number | null>(() => {
     if (!this.product()) return null;

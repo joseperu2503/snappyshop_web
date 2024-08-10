@@ -1,0 +1,7 @@
+.skeleton-container {
+  display: flex;
+  align-items: center;
+  .skeleton {
+    background-color: var(--primaryCultured);
+  }
+}
