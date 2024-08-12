@@ -15,7 +15,6 @@ export class AuthService {
   private api = inject(ApiService);
   private tokenService = inject(TokenService);
   private userService = inject(UserService);
-
   readonly dialog = inject(MatDialog);
 
   login(data: LoginFormDTO) {
