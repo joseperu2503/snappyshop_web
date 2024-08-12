@@ -8,7 +8,7 @@ import { environment } from '../../../../environments/environment';
 export class ApiService {
   private http = inject(HttpClient);
 
-  private apiUrl = `${environment.URL_BASE}`;
+  private apiUrl = `${environment.baseUrl}`;
 
   get<T>(query: string, params?: HttpParams) {
     const url = `${this.apiUrl}/${query}`;
