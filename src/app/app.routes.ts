@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.component';
+import { authGuard } from './core/guards/auth/auth.guard';
 
 export const routes: Routes = [
   {
@@ -23,6 +24,7 @@ export const routes: Routes = [
       },
       {
         path: 'wishlist',
+        canActivate: [authGuard],
         loadComponent: () =>
           import('./features/wishlist/pages/wishlist/wishlist.component'),
       },
@@ -33,6 +35,7 @@ export const routes: Routes = [
       },
       {
         path: 'cart',
+        canActivate: [authGuard],
         loadComponent: () =>
           import('./features/cart/pages/cart/cart.component'),
       },
