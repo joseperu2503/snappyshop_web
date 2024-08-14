@@ -31,6 +31,11 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/search/pages/search/search.component'),
       },
+      {
+        path: 'cart',
+        loadComponent: () =>
+          import('./features/cart/pages/cart/cart.component'),
+      },
     ],
   },
 ];

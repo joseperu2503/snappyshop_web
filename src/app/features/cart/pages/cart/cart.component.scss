@@ -1,0 +1,51 @@
+.page-container {
+  margin: 0 auto;
+  display: flex;
+  gap: 64px;
+
+  .product-carts {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    flex: 1 1 0%;
+  }
+
+  .resume {
+    width: 344px;
+
+    .subtitle-label {
+      margin-bottom: 10px;
+    }
+
+    .resumen-data {
+      padding: 16px;
+      background-color: var(--primaryCultured);
+      border-radius: 14px;
+
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      margin-bottom: 24px;
+
+      .row {
+        display: flex;
+        justify-content: space-between;
+        .label {
+          font-size: 14px;
+          font-weight: 500;
+          color: rgb(var(--textCoolBlack));
+          line-height: 22px;
+        }
+
+        .value {
+          font-size: 14px;
+          font-weight: 400;
+          color: rgb(var(--textCoolBlack));
+          line-height: 22px;
+        }
+      }
+    }
+  }
+}

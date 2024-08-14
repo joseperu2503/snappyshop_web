@@ -1,0 +1,32 @@
+<div class="page-container">
+  <div class="product-carts">
+    @for (productCart of cartStore.cart()?.products; track $index) {
+
+    <app-product-cart [productCart]="productCart"></app-product-cart>
+
+    }
+  </div>
+  <div class="resume">
+    <div class="subtitle-label">Resume</div>
+
+    <div class="resumen-data">
+      <div class="row">
+        <p class="label">Subtotal</p>
+        <p class="value">$19.99</p>
+      </div>
+      <div class="row">
+        <p class="label">Shipping Fee</p>
+        <p class="value">$19.99</p>
+      </div>
+      <div class="row">
+        <p class="label">Total</p>
+        <p class="value">{{ cartStore.cart()?.total_amount | price }}</p>
+      </div>
+    </div>
+
+    <app-button
+      text="Checkout"
+      [loading]="cartStore.loadingStatus() == LoadingStatus.Loading"
+    ></app-button>
+  </div>
+</div>

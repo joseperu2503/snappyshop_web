@@ -1,9 +1,21 @@
 <div class="button-stepper">
-  <button class="center">
-    <svg-icon src="assets/icons/minus.svg" class="icon"></svg-icon>
+  <button class="center" (click)="handleRemove()">
+    @if (type() == 'cart' && value() == 1) {
+
+    <svg-icon src="assets/icons/delete.svg" class="icon"></svg-icon>
+
+    }@else {
+    <svg-icon
+      src="assets/icons/minus.svg"
+      class="icon"
+      [ngClass]="{
+        disabled: this.value() == 1
+      }"
+    ></svg-icon>
+    }
   </button>
   <div class="value">{{ value() }}</div>
-  <button class="center">
+  <button class="center" (click)="handleAdd()">
     <svg-icon src="assets/icons/plus.svg" class="icon"></svg-icon>
   </button>
 </div>

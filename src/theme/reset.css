@@ -22,7 +22,7 @@ time, mark, audio, video {
 	padding: 0;
 	border: 0;
 	font-size: 100%;
-	font: inherit;
+	/* font: inherit; */
 	vertical-align: baseline;
 }
 
@@ -36,9 +36,9 @@ body {
 	line-height: 1;
 }
 
-ol, ul {
+/* ol, ul {
 	list-style: none;
-}
+} */
 
 blockquote, q {
 	quotes: none;
