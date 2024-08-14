@@ -26,6 +26,7 @@ import { ProductStore } from '../../stores/product.store';
 import { SharedModule } from '../../../../shared/shared.module';
 import { ProductSkeletonComponent } from '../../components/product-skeleton/product-skeleton.component';
 import { marked } from 'marked';
+import { CartStore } from '../../../cart/stores/cart.store';
 
 @Component({
   selector: 'app-product',
@@ -56,6 +57,7 @@ export default class ProductComponent {
   });
 
   imageIndex = signal<number>(0);
+
   loading = signal<LoadingStatus>(LoadingStatus.None);
   LoadingStatus = LoadingStatus;
   productDetail = computed<ProductDetailDTO | undefined>(() => {
@@ -63,8 +65,6 @@ export default class ProductComponent {
       .productDetails()
       .find((productDetail) => productDetail.product.id === this.productId());
   });
-
-  htmlContent: string = '';
 
   product = computed<ProductDTO | null>(() => {
     return this.productDetail()?.product ?? null;
@@ -121,10 +121,6 @@ export default class ProductComponent {
     this.loading.set(LoadingStatus.Loading);
     await this.productStore.getProduct(this.productId());
 
-    this.htmlContent = await marked(
-      this.productDetail()?.product.description ?? ''
-    );
-
     this.loading.set(LoadingStatus.Sucess);
   }
 
@@ -135,5 +131,19 @@ export default class ProductComponent {
       this.product()!,
       !this.product()!.is_favorite
     );
+  }
+
+  //** Cart */
+  cartStore = inject(CartStore);
+  quantity = signal<number>(1);
+
+  addUnit(value: number) {
+    this.quantity.update((q) => q + value);
+  }
+
+  addToCart() {
+    if (!this.product()) return;
+
+    this.cartStore.addUnit(this.product()!, this.quantity(), false);
   }
 }

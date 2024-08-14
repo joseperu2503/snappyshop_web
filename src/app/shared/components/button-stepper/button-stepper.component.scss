@@ -23,10 +23,11 @@
         width: 18px;
         color: rgb(var(--textYankeesBlue));
       }
+    }
 
-      &.disabled {
-        opacity: 0.25;
-      }
+    &.disabled {
+      opacity: 0.25;
+      cursor: auto;
     }
   }
 

@@ -101,7 +101,11 @@
           borderRadius="8px"
         ></app-skeleton>
         }@else {
-        <app-button-stepper [value]="2"></app-button-stepper>
+        <app-button-stepper
+          [value]="quantity()"
+          (onAdd)="addUnit(+1)"
+          (onRemove)="addUnit(-1)"
+        ></app-button-stepper>
         }
       </div>
 
@@ -118,7 +122,11 @@
           borderRadius="32px"
         ></app-skeleton>
         }@else {
-        <app-button text="Add to cart"></app-button>
+        <app-button
+          text="Add to cart"
+          (click)="addToCart()"
+          [loading]="cartStore.loadingStatus() == LoadingStatus.Loading"
+        ></app-button>
         <app-button type="secondary" text="Buy now"></app-button>
         }
       </div>

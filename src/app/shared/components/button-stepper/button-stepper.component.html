@@ -1,17 +1,17 @@
 <div class="button-stepper">
-  <button class="center" (click)="handleRemove()">
+  <button
+    class="center"
+    (click)="handleRemove()"
+    [ngClass]="{
+      disabled: this.value() == 1 && type() == 'productDetail'
+    }"
+  >
     @if (type() == 'cart' && value() == 1) {
 
     <svg-icon src="assets/icons/delete.svg" class="icon"></svg-icon>
 
     }@else {
-    <svg-icon
-      src="assets/icons/minus.svg"
-      class="icon"
-      [ngClass]="{
-        disabled: this.value() == 1
-      }"
-    ></svg-icon>
+    <svg-icon src="assets/icons/minus.svg" class="icon"></svg-icon>
     }
   </button>
   <div class="value">{{ value() }}</div>
