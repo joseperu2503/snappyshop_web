@@ -3,12 +3,3 @@
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 16px;
 }
-
-.title {
-  font-size: 20px;
-  font-weight: 600;
-  color: rgb(var(--textYankeesBlue));
-  line-height: 20px;
-
-  margin-bottom: 24px;
-}

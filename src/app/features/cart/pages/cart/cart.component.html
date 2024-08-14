@@ -1,32 +1,36 @@
-<div class="page-container">
-  <div class="product-carts">
-    @for (productCart of cartStore.cart()?.products; track $index) {
+<div>
+  <h2 class="snappy-title">Cart</h2>
 
-    <app-product-cart [productCart]="productCart"></app-product-cart>
+  <div class="page-container">
+    <div class="product-carts">
+      @for (productCart of cartStore.cart()?.products; track $index) {
 
-    }
-  </div>
-  <div class="resume">
-    <div class="subtitle-label">Resume</div>
+      <app-product-cart [productCart]="productCart"></app-product-cart>
 
-    <div class="resumen-data">
-      <div class="row">
-        <p class="label">Subtotal</p>
-        <p class="value">$19.99</p>
-      </div>
-      <div class="row">
-        <p class="label">Shipping Fee</p>
-        <p class="value">$19.99</p>
-      </div>
-      <div class="row">
-        <p class="label">Total</p>
-        <p class="value">{{ cartStore.cart()?.total_amount | price }}</p>
-      </div>
+      }
     </div>
+    <div class="resume">
+      <div class="subtitle-label">Resume</div>
 
-    <app-button
-      text="Checkout"
-      [loading]="cartStore.loadingStatus() == LoadingStatus.Loading"
-    ></app-button>
+      <div class="resumen-data">
+        <div class="row">
+          <p class="label">Subtotal</p>
+          <p class="value">$19.99</p>
+        </div>
+        <div class="row">
+          <p class="label">Shipping Fee</p>
+          <p class="value">$19.99</p>
+        </div>
+        <div class="row">
+          <p class="label">Total</p>
+          <p class="value">{{ cartStore.cart()?.total_amount | price }}</p>
+        </div>
+      </div>
+
+      <app-button
+        text="Checkout"
+        [loading]="cartStore.loadingStatus() == LoadingStatus.Loading"
+      ></app-button>
+    </div>
   </div>
 </div>
