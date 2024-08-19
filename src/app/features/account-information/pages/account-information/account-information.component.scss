@@ -1,0 +1,31 @@
+.form {
+  width: 100%;
+  height: min-content;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin: 0 auto;
+}
+
+.photo-none {
+  width: 180px;
+  height: 180px;
+  border-radius: 100%;
+  background-color: var(--primaryCultured);
+  border: none;
+  cursor: pointer;
+  margin: 0 auto;
+  margin-bottom: 30px;
+
+  .profile-icon {
+    width: 60px;
+    height: 60px;
+
+    svg {
+      height: 60px;
+      width: 60px;
+      color: rgba(var(--textArsenic), 0.5);
+    }
+  }
+}

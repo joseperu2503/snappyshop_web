@@ -5,7 +5,6 @@ import { ProductService } from '../services/product.service';
 import { UtilService } from '../../../shared/services/util/util.service';
 import { ProductDetailDTO } from '../dtos/products-detail.dto';
 import { AuthService } from '../../auth/services/auth.service';
-import { UserService } from '../../user/services/user.service';
 import { WishlistStore } from '../../wishlist/stores/wishlist.store';
 import { firstValueFrom } from 'rxjs';
 
@@ -17,7 +16,6 @@ export class ProductStore {
   private utilService = inject(UtilService);
   private wishlistStore = inject(WishlistStore);
 
-  userService = inject(UserService);
   authService = inject(AuthService);
 
   products = signal<ProductDTO[]>([]);
@@ -66,7 +64,7 @@ export class ProductStore {
   }
 
   toggleFavoriteProduct(product: ProductDTO, isFavorite: boolean) {
-    if (!this.userService.user()) {
+    if (!this.authService.verifyAuth()) {
       this.authService.openLoginDialog();
       return;
     }

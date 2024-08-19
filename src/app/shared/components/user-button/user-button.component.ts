@@ -44,7 +44,9 @@ export class UserButtonComponent {
     {
       icon: 'assets/icons/profile.svg',
       label: 'Account Information',
-      onPress: () => {},
+      onPress: () => {
+        this.router.navigate(['/account-information']);
+      },
     },
     {
       icon: 'assets/icons/card.svg',

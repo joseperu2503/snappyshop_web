@@ -26,6 +26,7 @@ export class NotificationService {
   async saveFcmToken() {
     const token = await this.getDeviceToken();
     if (token) {
+      console.log(token);
       this.api
         .post(`notification/save-device-fcm-token`, {
           token: token,

@@ -39,6 +39,14 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/cart/pages/cart/cart.component'),
       },
+      {
+        path: 'account-information',
+        canActivate: [authGuard],
+        loadComponent: () =>
+          import(
+            './features/account-information/pages/account-information/account-information.component'
+          ),
+      },
     ],
   },
 ];

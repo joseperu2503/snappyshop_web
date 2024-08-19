@@ -5,7 +5,6 @@ import { ProductDTO } from '../../product/dtos/product.dto';
 import { LoadingStatus } from '../../../core/enums/loading-status.enum';
 import { Subscription } from 'rxjs';
 import { TokenService } from '../../../core/services/token/token.service';
-import { UserService } from '../../user/services/user.service';
 import { AuthService } from '../../auth/services/auth.service';
 
 @Injectable({
@@ -16,7 +15,6 @@ export class CartStore {
   cart = signal<CartDTO | null>(null);
   loadingStatus = signal<LoadingStatus>(LoadingStatus.None);
   private tokenService = inject(TokenService);
-  userService = inject(UserService);
   authService = inject(AuthService);
 
   productCarts = computed<ProductCart[]>(() => {
@@ -47,7 +45,7 @@ export class CartStore {
     quantity: number,
     withDebouncer: boolean = true
   ) {
-    if (!this.userService.user()) {
+    if (!this.authService.verifyAuth()) {
       this.authService.openLoginDialog();
       return;
     }

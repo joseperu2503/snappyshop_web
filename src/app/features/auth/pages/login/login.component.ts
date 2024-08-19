@@ -7,7 +7,6 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
 import { UtilService } from '../../../../shared/services/util/util.service';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -21,7 +20,6 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export default class LoginComponent {
   private authService = inject(AuthService);
-  private router = inject(Router);
   private utilService = inject(UtilService);
   dialogRef: MatDialogRef<LoginComponent, boolean> = inject(
     MatDialogRef<LoginComponent, boolean>

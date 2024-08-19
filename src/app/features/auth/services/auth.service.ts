@@ -41,6 +41,11 @@ export class AuthService {
     });
   }
 
+  verifyAuth() {
+    const { isValid } = this.tokenService.validateToken();
+    return isValid;
+  }
+
   logout() {
     this.tokenService.removeToken();
     this.userService.removeStorageUser();

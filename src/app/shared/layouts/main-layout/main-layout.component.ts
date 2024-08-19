@@ -24,8 +24,9 @@ import { UserButtonComponent } from '../../components/user-button/user-button.co
   styleUrl: './main-layout.component.scss',
 })
 export class MainLayoutComponent {
-  userService = inject(UserService);
   authService = inject(AuthService);
+  userService = inject(UserService);
+
   router = inject(Router);
 
   login() {
@@ -33,7 +34,7 @@ export class MainLayoutComponent {
   }
 
   goToWishlist() {
-    if (!this.userService.user()) {
+    if (!this.authService.verifyAuth()) {
       this.authService.openLoginDialog();
       return;
     }
@@ -41,7 +42,7 @@ export class MainLayoutComponent {
   }
 
   goToCart() {
-    if (!this.userService.user()) {
+    if (!this.authService.verifyAuth()) {
       this.authService.openLoginDialog();
       return;
     }

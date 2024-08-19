@@ -1,0 +1,27 @@
+<app-page title="Account Information">
+  <form class="form" [formGroup]="form">
+    <div class="photo-none center">
+      <svg-icon src="assets/icons/profile.svg" class="profile-icon"></svg-icon>
+    </div>
+
+    <app-input
+      formControlName="name"
+      label="Name"
+      placeholder="Your name"
+      name="name"
+    ></app-input>
+    <app-input
+      formControlName="email"
+      label="Email"
+      placeholder="Your email"
+      name="email"
+    ></app-input>
+    <div style="height: 42px"></div>
+
+    <app-button
+      text="Save Changes"
+      (click)="submit()"
+      [loading]="loading"
+    ></app-button>
+  </form>
+</app-page>

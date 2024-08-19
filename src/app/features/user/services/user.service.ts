@@ -5,6 +5,10 @@ import { UserDTO } from '../dtos/user.dto';
 import { UtilService } from '../../../shared/services/util/util.service';
 import { StorageService } from '../../../core/services/storage/storage.service';
 import { NotificationService } from '../../notification/services/notification.service';
+import {
+  UpdateAccountInformationRequestDTO,
+  UpdateAccountInformationResponseDTO,
+} from '../dtos/update-account-information.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -32,6 +36,22 @@ export class UserService {
         );
       },
     });
+  }
+
+  updateAccountInformation(
+    data: Omit<UpdateAccountInformationRequestDTO, 'id'>
+  ) {
+    const body: UpdateAccountInformationRequestDTO = {
+      id: this.user()!.id,
+      name: data.name,
+      email: data.email,
+      profile_photo: this.user()!.profile_photo,
+    };
+
+    return this.api.post<UpdateAccountInformationResponseDTO>(
+      `user/change-personal-data`,
+      body
+    );
   }
 
   setStorageUser(user: UserDTO) {
