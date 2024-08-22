@@ -5,18 +5,25 @@
       class="input"
       placeholder="Search"
       [value]="searchStore.searchInput()"
-      (input)="changeInput($event)"
+      (input)="handleSearchInput($event)"
       (keydown.enter)="onSubmit()"
       (focus)="onFocus()"
     />
+    @if (searchStore.searchingProducts() == LoadingStatus.Loading) {
+    <mat-spinner diameter="20" color="#ffffff"></mat-spinner>
+    }
   </div>
 
   <div class="menu-container">
     <div
       class="menu"
-      [ngClass]="{ show: showMenu() && searchStore.preResults().length > 0 }"
+      [ngClass]="{
+        show:
+          showMenu() && searchStore.searchingProducts() == LoadingStatus.Sucess
+      }"
     >
-      @for (product of searchStore.preResults(); track $index) {
+      @if(searchStore.preResults().length > 0){ @for (product of
+      searchStore.preResults(); track $index) {
       <a
         class="menu-item"
         matRipple
@@ -30,8 +37,10 @@
         <p class="menu-item-label">{{ product.name }}</p>
       </a>
       }
-
       <p class="more-results" (click)="viewMoreResults()">View more results</p>
+      }@else {
+      <div class="no-results">No results.</div>
+      }
     </div>
   </div>
 </div>

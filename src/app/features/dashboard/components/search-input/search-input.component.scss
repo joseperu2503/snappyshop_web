@@ -43,6 +43,11 @@
         line-height: 22px;
       }
     }
+
+    mat-spinner {
+      right: 15px;
+      --mdc-circular-progress-active-indicator-color: var(--primaryPearlAqua);
+    }
   }
 
   .menu-container {
@@ -109,6 +114,15 @@
         color: rgb(var(--textYankeesBlue));
         text-decoration: underline;
         cursor: pointer;
+        text-align: center;
+      }
+
+      .no-results {
+        margin-top: 18px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 16px;
+        color: rgb(var(--textYankeesBlue));
         text-align: center;
       }
     }

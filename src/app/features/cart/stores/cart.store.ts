@@ -37,7 +37,7 @@ export class CartStore {
     });
   }
 
-  private debounceTimer: NodeJS.Timeout | null = null;
+  private debounceTimeout: NodeJS.Timeout | null = null;
   subscription: Subscription | null = null;
 
   async addUnit(product: ProductDTO, quantity: number, withDebouncer = true) {
@@ -84,12 +84,12 @@ export class CartStore {
       });
     }
 
-    if (this.debounceTimer) {
-      clearTimeout(this.debounceTimer);
+    if (this.debounceTimeout) {
+      clearTimeout(this.debounceTimeout);
     }
     this.subscription?.unsubscribe();
 
-    this.debounceTimer = setTimeout(
+    this.debounceTimeout = setTimeout(
       () => {
         this.loadingStatus.set(LoadingStatus.Loading);
 

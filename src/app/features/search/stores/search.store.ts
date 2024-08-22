@@ -16,7 +16,6 @@ export class SearchStore {
 
   products = signal<ProductDTO[]>([]);
   preResults = signal<ProductDTO[]>([]);
-  private totalPagesPre = signal<ProductDTO[]>([]);
 
   private page = signal<number>(1);
   private totalPages = signal<number>(1);
@@ -44,33 +43,44 @@ export class SearchStore {
     });
   }
 
-  searchProducts(search: string) {
-    this.searchInput.set(search);
+  private debounceTimeout: NodeJS.Timeout | null = null;
 
+  searchProducts(search: string) {
+    if (this.debounceTimeout) {
+      clearTimeout(this.debounceTimeout);
+    }
+    this.searchingProducts.set(LoadingStatus.Loading);
+
+    this.searchInput.set(search);
     this.preResults.set([]);
 
-    if (search == '') return;
+    if (search == '') {
+      this.searchingProducts.set(LoadingStatus.None);
+      return;
+    }
 
-    this.searchingProducts.set(LoadingStatus.Loading);
-    this.productService
-      .getProducts({
-        page: 1,
-        search: this.searchInput(),
-      })
-      .subscribe({
-        next: (response) => {
-          if (search === this.searchInput()) {
-            this.preResults.set(response.results);
-            this.searchingProducts.set(LoadingStatus.Sucess);
-          }
-        },
-        error: () => {
-          this.utilService.openSnackBar(
-            'An error occurred while loading the products.'
-          );
-          this.searchingProducts.set(LoadingStatus.Error);
-        },
-      });
+    this.debounceTimeout = setTimeout(() => {
+      this.searchingProducts.set(LoadingStatus.Loading);
+      this.productService
+        .getProducts({
+          page: 1,
+          search: this.searchInput(),
+        })
+        .subscribe({
+          next: (response) => {
+            if (search === this.searchInput()) {
+              this.preResults.set(response.results);
+              this.searchingProducts.set(LoadingStatus.Sucess);
+            }
+          },
+          error: () => {
+            this.utilService.openSnackBar(
+              'An error occurred while loading the products.'
+            );
+            this.searchingProducts.set(LoadingStatus.Error);
+          },
+        });
+    }, 500);
   }
 
   getProducts() {

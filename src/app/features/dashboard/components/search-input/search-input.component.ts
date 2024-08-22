@@ -6,6 +6,7 @@ import { SearchStore } from '../../../search/stores/search.store';
 import { ImageComponent } from '../../../../shared/components/image/image.component';
 import { RouterLink } from '@angular/router';
 import { LoadingStatus } from '../../../../core/enums/loading-status.enum';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-search-input',
@@ -17,6 +18,7 @@ import { LoadingStatus } from '../../../../core/enums/loading-status.enum';
     NgClickOutsideDirective,
     ImageComponent,
     RouterLink,
+    MatProgressSpinnerModule,
   ],
   templateUrl: './search-input.component.html',
   styleUrl: './search-input.component.scss',
@@ -24,6 +26,7 @@ import { LoadingStatus } from '../../../../core/enums/loading-status.enum';
 export class SearchInputComponent {
   showMenu = signal<boolean>(false);
   searchStore = inject(SearchStore);
+  LoadingStatus = LoadingStatus;
 
   closeMenu() {
     this.showMenu.set(false);
@@ -43,10 +46,9 @@ export class SearchInputComponent {
     this.showMenu.set(true);
   }
 
-  changeInput(event: Event) {
-    // Cuando se escribre se busca productos
-
+  handleSearchInput(event: Event) {
     const input = event.target as HTMLInputElement;
+
     this.searchStore.searchProducts(input.value);
   }
 
