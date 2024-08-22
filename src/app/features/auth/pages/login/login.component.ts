@@ -36,7 +36,7 @@ export default class LoginComponent {
     }),
   });
 
-  loading: boolean = false;
+  loading = false;
 
   login() {
     if (!this.form.valid) {
@@ -51,7 +51,7 @@ export default class LoginComponent {
         password,
       })
       .subscribe({
-        next: (_) => {
+        next: () => {
           this.dialogRef.close(true);
           this.loading = false;
         },

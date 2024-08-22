@@ -64,7 +64,7 @@ export class SearchStore {
             this.searchingProducts.set(LoadingStatus.Sucess);
           }
         },
-        error: (error) => {
+        error: () => {
           this.utilService.openSnackBar(
             'An error occurred while loading the products.'
           );
@@ -94,7 +94,7 @@ export class SearchStore {
             this.handleScroll();
           }
         },
-        error: (error) => {
+        error: () => {
           this.utilService.openSnackBar(
             'An error occurred while loading the products.'
           );

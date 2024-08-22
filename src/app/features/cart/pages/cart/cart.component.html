@@ -29,7 +29,7 @@
 
       <app-button
         text="Checkout"
-        [loading]="cartStore.loadingStatus() == LoadingStatus.Loading"
+        [loading]="cartStore.loadingStatus() === LoadingStatus.Loading"
       ></app-button>
     </div>
   </div>

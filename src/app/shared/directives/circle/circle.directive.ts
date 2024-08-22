@@ -1,7 +1,7 @@
 import { Directive, ElementRef, Renderer2 } from '@angular/core';
 
 @Directive({
-  selector: '[circle]',
+  selector: '[appCircle]',
 })
 export class CircleDirective {
   constructor(private el: ElementRef, private renderer: Renderer2) {

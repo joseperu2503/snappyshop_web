@@ -55,7 +55,7 @@ export class ProductService {
       page: 1,
     }
   ) {
-    let httpParams = new HttpParams().set('page', query.page.toString());
+    const httpParams = new HttpParams().set('page', query.page.toString());
 
     return this.api.get<ProductsResponseDTO>(
       `products/my-favorite-products`,

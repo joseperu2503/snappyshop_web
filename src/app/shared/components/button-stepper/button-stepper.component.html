@@ -3,10 +3,10 @@
     class="center"
     (click)="handleRemove()"
     [ngClass]="{
-      disabled: this.value() == 1 && type() == 'productDetail'
+      disabled: this.value() === 1 && type() === 'productDetail'
     }"
   >
-    @if (type() == 'cart' && value() == 1) {
+    @if (type() === 'cart' && value() === 1) {
 
     <svg-icon src="assets/icons/delete.svg" class="icon"></svg-icon>
 

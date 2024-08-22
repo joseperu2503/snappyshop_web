@@ -32,7 +32,7 @@ export class NotificationService {
           token: token,
         })
         .subscribe({
-          next: (respose) => {
+          next: () => {
             this.onMessage();
           },
         });

@@ -8,6 +8,8 @@ import {
   input,
   signal,
   SimpleChanges,
+  OnChanges,
+  AfterViewInit,
 } from '@angular/core';
 import { LoadingStatus } from '../../../../core/enums/loading-status.enum';
 import { PricePipe } from '../../../../core/pipes/price/price.pipe';
@@ -25,7 +27,6 @@ import { ProductItemComponent } from '../../components/product-item/product-item
 import { ProductStore } from '../../stores/product.store';
 import { SharedModule } from '../../../../shared/shared.module';
 import { ProductSkeletonComponent } from '../../components/product-skeleton/product-skeleton.component';
-import { marked } from 'marked';
 import { CartStore } from '../../../cart/stores/cart.store';
 
 @Component({
@@ -47,7 +48,7 @@ import { CartStore } from '../../../cart/stores/cart.store';
   styleUrl: './product.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export default class ProductComponent {
+export default class ProductComponent implements OnChanges, AfterViewInit {
   productStore = inject(ProductStore);
 
   @ViewChild('swiper') swiper!: ElementRef<SwiperContainer>;

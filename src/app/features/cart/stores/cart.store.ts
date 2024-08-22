@@ -40,11 +40,7 @@ export class CartStore {
   private debounceTimer: NodeJS.Timeout | null = null;
   subscription: Subscription | null = null;
 
-  async addUnit(
-    product: ProductDTO,
-    quantity: number,
-    withDebouncer: boolean = true
-  ) {
+  async addUnit(product: ProductDTO, quantity: number, withDebouncer = true) {
     if (!this.authService.verifyAuth()) {
       this.authService.openLoginDialog();
       return;

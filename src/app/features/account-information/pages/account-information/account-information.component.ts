@@ -1,11 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { AuthService } from '../../../auth/services/auth.service';
 import { UtilService } from '../../../../shared/services/util/util.service';
 import { InputComponent } from '../../../../shared/components/input/input.component';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
@@ -26,7 +25,7 @@ import { UserService } from '../../../user/services/user.service';
   templateUrl: './account-information.component.html',
   styleUrl: './account-information.component.scss',
 })
-export default class AccountInformationComponent {
+export default class AccountInformationComponent implements OnInit {
   private utilService = inject(UtilService);
   private userService = inject(UserService);
 
@@ -49,7 +48,7 @@ export default class AccountInformationComponent {
     });
   }
 
-  loading: boolean = false;
+  loading = false;
 
   submit() {
     if (!this.form.valid) {
@@ -59,7 +58,7 @@ export default class AccountInformationComponent {
     this.loading = true;
     const { email, name } = this.form.getRawValue();
     this.userService
-      .updateAccountInformation({
+      .updateProfile({
         name: name,
         email: email,
         profile_photo: this.userService.user()!.profile_photo,
@@ -70,9 +69,16 @@ export default class AccountInformationComponent {
           this.loading = false;
         },
         error: (error) => {
-          this.utilService.openSnackBar(
-            'An error occurred while updating your account information.'
-          );
+          const defaultMessage =
+            'An error occurred while updating your account information.';
+          if (error?.status == 422) {
+            this.utilService.openSnackBar(
+              error?.error?.message ?? defaultMessage
+            );
+          } else {
+            this.utilService.openSnackBar(defaultMessage);
+          }
+
           this.loading = false;
         },
       });

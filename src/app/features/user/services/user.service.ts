@@ -25,12 +25,12 @@ export class UserService {
   getUser() {
     if (!this.tokenService.validateToken().isValid) return;
     this.getStorageUser();
-    return this.api.get<UserDTO>(`user/me`).subscribe({
+    return this.api.get<UserDTO>(`account/profile`).subscribe({
       next: (response) => {
         this.setStorageUser(response);
         this.notificationService.saveFcmToken();
       },
-      error: (error) => {
+      error: () => {
         this.utilService.openSnackBar(
           'An error occurred while loading the user.'
         );
@@ -38,9 +38,7 @@ export class UserService {
     });
   }
 
-  updateAccountInformation(
-    data: Omit<UpdateAccountInformationRequestDTO, 'id'>
-  ) {
+  updateProfile(data: Omit<UpdateAccountInformationRequestDTO, 'id'>) {
     const body: UpdateAccountInformationRequestDTO = {
       id: this.user()!.id,
       name: data.name,
@@ -48,8 +46,8 @@ export class UserService {
       profile_photo: this.user()!.profile_photo,
     };
 
-    return this.api.post<UpdateAccountInformationResponseDTO>(
-      `user/change-personal-data`,
+    return this.api.put<UpdateAccountInformationResponseDTO>(
+      `account/profile`,
       body
     );
   }

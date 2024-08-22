@@ -1,4 +1,11 @@
-import { Component, SimpleChanges, inject, input } from '@angular/core';
+import {
+  Component,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+  inject,
+  input,
+} from '@angular/core';
 import { ProductItemComponent } from '../../../product/components/product-item/product-item.component';
 import { SearchStore } from '../../stores/search.store';
 
@@ -9,7 +16,7 @@ import { SearchStore } from '../../stores/search.store';
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss',
 })
-export default class SearchComponent {
+export default class SearchComponent implements OnInit, OnChanges {
   searchStore = inject(SearchStore);
 
   public q = input<string>('q');

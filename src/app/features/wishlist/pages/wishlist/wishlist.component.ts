@@ -1,4 +1,10 @@
-import { Component, inject } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  OnDestroy,
+  OnInit,
+  inject,
+} from '@angular/core';
 import { ProductItemComponent } from '../../../product/components/product-item/product-item.component';
 import { WishlistStore } from '../../stores/wishlist.store';
 
@@ -9,7 +15,9 @@ import { WishlistStore } from '../../stores/wishlist.store';
   templateUrl: './wishlist.component.html',
   styleUrl: './wishlist.component.scss',
 })
-export default class WishlistComponent {
+export default class WishlistComponent
+  implements OnInit, AfterViewInit, OnDestroy
+{
   wishlistStore = inject(WishlistStore);
 
   ngOnInit() {

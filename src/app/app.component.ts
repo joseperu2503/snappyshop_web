@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { UserService } from './features/user/services/user.service';
 import { CartStore } from './features/cart/stores/cart.store';
@@ -10,7 +10,7 @@ import { CartStore } from './features/cart/stores/cart.store';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   private userService = inject(UserService);
   private cartStore = inject(CartStore);
 

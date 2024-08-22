@@ -15,12 +15,12 @@ export class ApiService {
     return this.http.get<T>(url, { params });
   }
 
-  post<T>(query: string, body: any) {
+  post<T>(query: string, body: object) {
     const url = `${this.apiUrl}/${query}`;
     return this.http.post<T>(url, body);
   }
 
-  put<T>(query: string, body: any) {
+  put<T>(query: string, body: object) {
     const url = `${this.apiUrl}/${query}`;
     return this.http.put<T>(url, body);
   }

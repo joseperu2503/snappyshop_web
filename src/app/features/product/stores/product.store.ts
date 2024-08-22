@@ -43,7 +43,7 @@ export class ProductStore {
           this.loadingProducts.set(LoadingStatus.Sucess);
           this.handleScroll();
         },
-        error: (error) => {
+        error: () => {
           this.utilService.openSnackBar(
             'An error occurred while loading the products.'
           );
@@ -100,8 +100,7 @@ export class ProductStore {
     this.productService
       .toggleFavoriteProduct(product.id, isFavorite)
       .subscribe({
-        next: (response) => {},
-        error: (error) => {
+        error: () => {
           this.utilService.openSnackBar(
             'An error occurred while setting up the product.'
           );
@@ -130,7 +129,7 @@ export class ProductStore {
         return [...value, response];
       });
       this.loadingProduct.set(LoadingStatus.Sucess);
-    } catch (error) {
+    } catch (_) {
       this.utilService.openSnackBar(
         'An error occurred while loading the product.'
       );

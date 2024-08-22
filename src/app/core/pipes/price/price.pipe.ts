@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   standalone: true,
 })
 export class PricePipe implements PipeTransform {
-  transform(value: number | null | undefined, ...args: unknown[]): string {
+  transform(value: number | null | undefined): string {
     if (!value) {
       return '';
     }

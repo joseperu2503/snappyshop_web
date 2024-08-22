@@ -34,7 +34,7 @@ export class WishlistStore {
           this.loadingProducts.set(LoadingStatus.Sucess);
           this.handleScroll();
         },
-        error: (error) => {
+        error: () => {
           this.utilService.openSnackBar(
             'An error occurred while loading the products.'
           );

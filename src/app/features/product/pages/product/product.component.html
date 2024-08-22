@@ -14,14 +14,14 @@
       <div class="images-preview-container">
         <div class="images-preview">
           @for (image of product()?.images; track $index) {
-          <div [ngClass]="{ selected: imageIndex() == $index }">
+          <div [ngClass]="{ selected: imageIndex() === $index }">
             <app-image
               [src]="image"
               class="image-preview"
               (click)="slideToImage($index)"
             ></app-image>
           </div>
-          } @if (productStore.loadingProduct() == LoadingStatus.Loading){ @for
+          } @if (productStore.loadingProduct() === LoadingStatus.Loading){ @for
           (image of [].constructor(4); track $index) {
           <app-skeleton
             width="48px"
@@ -34,7 +34,7 @@
     </div>
     <div class="right">
       <div class="store-header">
-        @if (loading() == LoadingStatus.Loading) {
+        @if (loading() === LoadingStatus.Loading) {
         <app-skeleton width="160px" height="32px"></app-skeleton>
 
         }@else{
@@ -43,14 +43,14 @@
         }
       </div>
       <div class="product-name-container">
-        @if (loading() == LoadingStatus.Loading) {
+        @if (loading() === LoadingStatus.Loading) {
         <app-skeleton
           width="200px"
           height="18px"
           lineHeight="20px"
         ></app-skeleton>
 
-        <app-skeleton circle width="42px" height="42px"></app-skeleton>
+        <app-skeleton appCircle width="42px" height="42px"></app-skeleton>
         }@else{
         <h1 class="product-name">{{ product()?.name }}</h1>
         <button
@@ -74,7 +74,7 @@
         }
       </div>
       <div class="product-price-row">
-        @if (loading() == LoadingStatus.Loading) {
+        @if (loading() === LoadingStatus.Loading) {
         <app-skeleton
           width="100px"
           height="20px"
@@ -87,14 +87,14 @@
       </div>
       <div class="quantity-row">
         <div class="spacer">
-          @if (loading() == LoadingStatus.Loading) {
+          @if (loading() === LoadingStatus.Loading) {
           <div class="quantity-label-skeleton"></div>
           <app-skeleton width="100px" height="16px"></app-skeleton>
           }@else {
           <p class="quantity-label">Quantity</p>
           }
         </div>
-        @if (loading() == LoadingStatus.Loading) {
+        @if (loading() === LoadingStatus.Loading) {
         <app-skeleton
           width="96px"
           height="36px"
@@ -110,7 +110,7 @@
       </div>
 
       <div class="buttons-row">
-        @if (loading() == LoadingStatus.Loading) {
+        @if (loading() === LoadingStatus.Loading) {
         <app-skeleton
           width="100%"
           height="52px"
@@ -125,14 +125,14 @@
         <app-button
           text="Add to cart"
           (click)="addToCart()"
-          [loading]="cartStore.loadingStatus() == LoadingStatus.Loading"
+          [loading]="cartStore.loadingStatus() === LoadingStatus.Loading"
         ></app-button>
         <app-button type="secondary" text="Buy now"></app-button>
         }
       </div>
 
       <div class="description-container">
-        @if (loading() == LoadingStatus.Loading) {
+        @if (loading() === LoadingStatus.Loading) {
         <app-skeleton
           width="96px"
           height="17px"
@@ -157,7 +157,7 @@
   </div>
 
   <div class="store-related-products-label">
-    @if (loading() == LoadingStatus.Loading) {
+    @if (loading() === LoadingStatus.Loading) {
     <app-skeleton width="250px" height="17px" lineHeight="22px"></app-skeleton>
     }@else {
     <p class="subtitle-label">More from {{ store()?.name }}</p>
@@ -167,7 +167,7 @@
       @for (product of productDetail()?.store_related_products; track $index) {
       <app-product-item [product]="product"> </app-product-item>
 
-      } @if (productStore.loadingProduct() == LoadingStatus.Loading) { @for
+      } @if (productStore.loadingProduct() === LoadingStatus.Loading) { @for
       (item of [].constructor(10) ; track $index) {
       <app-product-skeleton> </app-product-skeleton>
       } }

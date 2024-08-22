@@ -1,4 +1,10 @@
-import { Component, inject } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  OnDestroy,
+  OnInit,
+  inject,
+} from '@angular/core';
 import { ProductItemComponent } from '../../../product/components/product-item/product-item.component';
 import { ProductStore } from '../../../product/stores/product.store';
 import { ProductSkeletonComponent } from '../../../product/components/product-skeleton/product-skeleton.component';
@@ -11,7 +17,9 @@ import { LoadingStatus } from '../../../../core/enums/loading-status.enum';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
-export default class DashboardComponent {
+export default class DashboardComponent
+  implements OnInit, AfterViewInit, OnDestroy
+{
   productStore = inject(ProductStore);
   LoadingStatus = LoadingStatus;
   ngOnInit() {
