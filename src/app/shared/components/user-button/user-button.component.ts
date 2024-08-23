@@ -61,7 +61,9 @@ export class UserButtonComponent {
     {
       icon: 'assets/icons/box.svg',
       label: 'My Addresses',
-      onPress: () => {},
+      onPress: () => {
+        this.router.navigate(['/my-addresses']);
+      },
     },
     {
       icon: 'assets/icons/lock.svg',

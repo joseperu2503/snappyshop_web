@@ -47,6 +47,14 @@ export const routes: Routes = [
             './features/account-information/pages/account-information/account-information.component'
           ),
       },
+      {
+        path: 'my-addresses',
+        canActivate: [authGuard],
+        loadComponent: () =>
+          import(
+            './features/address/pages/my-addresses/my-addresses.component'
+          ),
+      },
     ],
   },
 ];
