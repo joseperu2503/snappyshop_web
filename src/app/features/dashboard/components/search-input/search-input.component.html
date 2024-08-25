@@ -5,7 +5,7 @@
       class="input"
       placeholder="Search"
       [value]="searchStore.searchInput()"
-      (input)="handleSearchInput($event)"
+      (input)="handleInput($event)"
       (keydown.enter)="onSubmit()"
       (focus)="onFocus()"
     />

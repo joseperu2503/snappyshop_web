@@ -46,7 +46,7 @@ export class SearchInputComponent {
     this.showMenu.set(true);
   }
 
-  handleSearchInput(event: Event) {
+  handleInput(event: Event) {
     const input = event.target as HTMLInputElement;
 
     this.searchStore.searchProducts(input.value);

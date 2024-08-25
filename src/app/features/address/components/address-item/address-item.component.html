@@ -1,0 +1,25 @@
+<div class="address-item">
+  <svg-icon
+    src="assets/icons/map_pin_outlined.svg"
+    class="icon-map-pin"
+  ></svg-icon>
+  <div class="body">
+    <div class="info">
+      <div class="main">
+        <div class="address">
+          {{ address().address }}
+        </div>
+        @if (address().primary) {
+        <div class="default">default</div>
+        }
+      </div>
+      <div class="detail">
+        {{ address().detail }}
+      </div>
+    </div>
+    <svg-icon
+      src="assets/icons/arrow_forward.svg"
+      class="icon-arrow"
+    ></svg-icon>
+  </div>
+</div>

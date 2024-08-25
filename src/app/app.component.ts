@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { UserService } from './features/user/services/user.service';
 import { CartStore } from './features/cart/stores/cart.store';
+import { GoogleMapsService } from './shared/services/google-maps/google-maps.service';
 
 @Component({
   selector: 'app-root',
@@ -13,9 +14,11 @@ import { CartStore } from './features/cart/stores/cart.store';
 export class AppComponent implements OnInit {
   private userService = inject(UserService);
   private cartStore = inject(CartStore);
+  private googleMapsServices = inject(GoogleMapsService);
 
   ngOnInit() {
     this.userService.getUser();
     this.cartStore.getCart();
+    this.googleMapsServices.loadGoogleMapsScript();
   }
 }

@@ -14,7 +14,6 @@ export class CartStore {
   private cartService = inject(CartService);
   cart = signal<CartDTO | null>(null);
   loadingStatus = signal<LoadingStatus>(LoadingStatus.None);
-  private tokenService = inject(TokenService);
   private authService = inject(AuthService);
 
   productCarts = computed<ProductCart[]>(() => {
@@ -23,7 +22,7 @@ export class CartStore {
 
   getCart() {
     if (this.loadingStatus() == LoadingStatus.Loading) return;
-    if (!this.tokenService.validateToken().isValid) return;
+    if (!this.authService.verifyAuth()) return;
 
     this.loadingStatus.set(LoadingStatus.Loading);
 
