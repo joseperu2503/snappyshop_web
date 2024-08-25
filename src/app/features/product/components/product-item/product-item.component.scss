@@ -13,7 +13,7 @@ a.product-item {
       position: absolute;
       top: 10px;
       left: 8px;
-      background-color: var(--secondaryMangoTango);
+      background-color: rgb(var(--secondaryMangoTango));
       border-radius: 50px;
       padding: 6px;
 
@@ -76,7 +76,7 @@ a.product-item {
       .product-sale-price {
         font-size: 12px;
         font-weight: 600;
-        color: var(--secondaryPastelRed);
+        color: rgb(var(--secondaryPastelRed));
         line-height: 1.1 * 12px;
       }
 
