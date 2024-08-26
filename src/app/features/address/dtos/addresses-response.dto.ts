@@ -44,5 +44,5 @@ export interface GeocodeResponse {
   readonly country: string;
   readonly locality: string;
   readonly postal_code: string;
-  readonly global_code: string;
+  readonly plus_code: string;
 }

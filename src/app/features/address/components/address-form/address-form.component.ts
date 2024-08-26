@@ -42,6 +42,8 @@ export class AddressFormComponent {
   addressResults = signal<AddressResult[]>([]);
   searchingAddresses = signal<LoadingStatus>(LoadingStatus.None);
   loading = signal<LoadingStatus>(LoadingStatus.None);
+  geocodeStatus = signal<LoadingStatus>(LoadingStatus.None);
+
   LoadingStatus = LoadingStatus;
 
   searchInput = signal<string>('');
@@ -115,10 +117,11 @@ export class AddressFormComponent {
   mapOtions: google.maps.MapOptions = {
     mapTypeControl: false, // Deshabilita el control de tipo de mapa (incluyendo el satélite)
     streetViewControl: false, // Deshabilita el control de Street View
+    zoomControl: false,
   };
 
   onMapIdle() {
-    this.loading.set(LoadingStatus.Loading);
+    this.geocodeStatus.set(LoadingStatus.Loading);
     this.addressService
       .geocode(this.center().lat, this.center().lng)
       .subscribe({
@@ -127,13 +130,13 @@ export class AddressFormComponent {
             address: response.address,
             country: response.country,
             locality: response.locality,
-            plus_code: response.global_code,
+            plus_code: response.plus_code,
             postal_code: response.postal_code,
           });
-          this.loading.set(LoadingStatus.Sucess);
+          this.geocodeStatus.set(LoadingStatus.Sucess);
         },
         error: (error) => {
-          this.loading.set(LoadingStatus.Error);
+          this.geocodeStatus.set(LoadingStatus.Error);
         },
       });
   }
@@ -141,10 +144,11 @@ export class AddressFormComponent {
   onCenterChanged() {
     if (this.map) {
       const newCenter = this.map.getCenter()?.toJSON();
+
       if (
         newCenter &&
-        newCenter.lat != this.center().lat &&
-        newCenter.lng != this.center().lng
+        (newCenter.lat != this.center().lat ||
+          newCenter.lng != this.center().lng)
       ) {
         this.center.set(newCenter);
       }
@@ -219,9 +223,10 @@ export class AddressFormComponent {
         next: (response) => {
           this.utilService.openSnackBar(response.message);
           this.loading.set(LoadingStatus.Sucess);
-          this.dialogRef.close();
+          this.dialogRef.close(true);
         },
         error: (error) => {
+          this.utilService.openSnackBar(error.error.message);
           this.loading.set(LoadingStatus.Error);
         },
       });

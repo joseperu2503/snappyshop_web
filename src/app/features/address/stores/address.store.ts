@@ -39,7 +39,8 @@ export class AddressStore {
   openForm() {
     const dialogRef: AddressForm = this.dialog.open(AddressFormComponent, {
       width: '100%',
-      maxWidth: '420px',
+      maxWidth: '500px',
+      minHeight: '400px',
     });
 
     dialogRef.afterClosed().subscribe((result) => {

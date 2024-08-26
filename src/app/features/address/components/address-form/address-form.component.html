@@ -39,6 +39,7 @@
       [mapTypeId]="matTypeId"
       [options]="mapOtions"
       (idle)="onMapIdle()"
+      (centerChanged)="onCenterChanged()"
     >
     </google-map>
     <svg-icon
@@ -48,7 +49,12 @@
   </div>
 
   <div class="button-container">
-    <app-button text="Confirm Address" (click)="confirmAddress()"></app-button>
+    <div class="address">{{ form.value.address }}</div>
+    <app-button
+      text="Confirm Address"
+      (click)="confirmAddress()"
+      [loading]="geocodeStatus() == LoadingStatus.Loading"
+    ></app-button>
   </div>
   } @if(formStep()=='form'){
   <div class="header">
