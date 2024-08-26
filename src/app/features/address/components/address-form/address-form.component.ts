@@ -1,7 +1,11 @@
 import { Component, ViewChild, inject, signal } from '@angular/core';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { SvgIconComponent } from 'angular-svg-icon';
-import { AddressResult } from '../../dtos/addresses-response.dto';
+import { Address, AddressResult } from '../../dtos/addresses-response.dto';
 import { LoadingStatus } from '../../../../core/enums/loading-status.enum';
 import { AddressService } from '../../services/address.service';
 import { UtilService } from '../../../../shared/services/util/util.service';
@@ -16,6 +20,7 @@ import {
 } from '@angular/forms';
 import { InputComponent } from '../../../../shared/components/input/input.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { TextareaComponent } from '../../../../shared/components/textarea/textarea.component';
 
 @Component({
   selector: 'app-address-form',
@@ -29,6 +34,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     InputComponent,
     MatProgressSpinnerModule,
     FormsModule,
+    TextareaComponent,
   ],
   templateUrl: './address-form.component.html',
   styleUrl: './address-form.component.scss',
@@ -39,6 +45,9 @@ export class AddressFormComponent {
   @ViewChild(GoogleMap) map: GoogleMap | undefined;
   readonly dialogRef: AddressForm = inject(MatDialogRef<AddressFormComponent>);
 
+  readonly data = inject<DataAddressForm>(MAT_DIALOG_DATA);
+  address: Address | null = this.data?.address ?? null;
+
   addressResults = signal<AddressResult[]>([]);
   searchingAddresses = signal<LoadingStatus>(LoadingStatus.None);
   loading = signal<LoadingStatus>(LoadingStatus.None);
@@ -48,6 +57,26 @@ export class AddressFormComponent {
 
   searchInput = signal<string>('');
   formStep = signal<'search' | 'map' | 'form'>('search');
+
+  ngOnInit() {
+    if (this.address) {
+      this.form.patchValue({
+        address: this.address.address,
+        country: this.address.country,
+        locality: this.address.locality,
+        plus_code: this.address.plus_code,
+        postal_code: this.address.postal_code,
+        detail: this.address.detail,
+        phone: this.address.phone,
+        recipientName: this.address.recipient_name,
+        references: this.address.references ?? '',
+      });
+
+      this.form.disable();
+
+      this.formStep.set('form');
+    }
+  }
 
   private debounceTimeout: NodeJS.Timeout | null = null;
 
@@ -118,6 +147,7 @@ export class AddressFormComponent {
     mapTypeControl: false, // Deshabilita el control de tipo de mapa (incluyendo el satélite)
     streetViewControl: false, // Deshabilita el control de Street View
     zoomControl: false,
+    fullscreenControl: false,
   };
 
   onMapIdle() {
@@ -235,6 +265,6 @@ export class AddressFormComponent {
 
 export type AddressForm = MatDialogRef<AddressFormComponent, boolean>;
 
-interface DataPopUpAddressForm {
-  addressId: number;
+interface DataAddressForm {
+  address: Address;
 }

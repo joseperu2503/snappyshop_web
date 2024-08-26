@@ -84,14 +84,19 @@
       label="Phone Number"
       placeholder="Your phone"
       name="phone"
+      type="textarea"
     ></app-input>
-    <app-input formControlName="references" label="References"></app-input>
+    <app-textarea
+      formControlName="references"
+      label="References"
+    ></app-textarea>
   </form>
 
+  @if(!address){
   <div class="button-container">
     <app-button text="Save Address" (click)="saveAddress()"></app-button>
   </div>
-  } @if (loading() == LoadingStatus.Loading) {
+  } } @if (loading() == LoadingStatus.Loading) {
   <div class="loader">
     <mat-spinner diameter="28" color="#ffffff"></mat-spinner>
   </div>

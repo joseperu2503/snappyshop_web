@@ -1,9 +1,8 @@
 <div class="page-content">
+  <h1 class="title">Log in</h1>
+
+  <p class="subtitle">Please enter your data to continue</p>
   <form class="form" [formGroup]="form">
-    <h1 class="title">Log in</h1>
-
-    <p class="subtitle">Please enter your data to continue</p>
-
     <app-input
       formControlName="email"
       label="Email"
@@ -16,12 +15,8 @@
       placeholder="Password"
       name="password"
     ></app-input>
-    <div style="height: 10px"></div>
-
-    <app-button
-      text="Log In"
-      (click)="login()"
-      [loading]="loading"
-    ></app-button>
   </form>
+  <div style="height: 42px"></div>
+
+  <app-button text="Log In" (click)="login()" [loading]="loading"></app-button>
 </div>

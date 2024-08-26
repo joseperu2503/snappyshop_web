@@ -35,6 +35,7 @@ export class InputComponent implements ControlValueAccessor {
   @Input() errors = {};
   @Input() disabled: boolean = false;
   @Input() name?: string;
+  @Input() type?: string;
 
   get innerErrors() {
     return {

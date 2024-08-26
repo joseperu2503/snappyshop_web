@@ -7,6 +7,7 @@ import { ImageComponent } from '../../../../shared/components/image/image.compon
 import { RouterLink } from '@angular/router';
 import { LoadingStatus } from '../../../../core/enums/loading-status.enum';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatRippleModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-search-input',
@@ -19,6 +20,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     ImageComponent,
     RouterLink,
     MatProgressSpinnerModule,
+    MatRippleModule,
   ],
   templateUrl: './search-input.component.html',
   styleUrl: './search-input.component.scss',

@@ -36,11 +36,14 @@ export class AddressStore {
     });
   }
 
-  openForm() {
+  openForm(address?: Address) {
     const dialogRef: AddressForm = this.dialog.open(AddressFormComponent, {
       width: '100%',
       maxWidth: '500px',
       minHeight: '400px',
+      data: {
+        address: address,
+      },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
