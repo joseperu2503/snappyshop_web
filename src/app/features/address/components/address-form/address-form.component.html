@@ -1,0 +1,93 @@
+<div class="dialog-content">
+  @if(formStep() == 'search'){
+  <div class="header">
+    <h2 class="snappy-title">Search address</h2>
+    <div class="input-container">
+      <svg-icon src="assets/icons/search.svg" class="icon"></svg-icon>
+      <input
+        class="input"
+        placeholder="Search"
+        [(ngModel)]="searchInput"
+        (input)="handleInput()"
+      />
+      @if (searchingAddresses() == LoadingStatus.Loading) {
+      <mat-spinner diameter="20" color="#ffffff"></mat-spinner>
+      }
+    </div>
+  </div>
+
+  <div class="results">
+    @for (item of addressResults(); track $index) {
+    <div (click)="selectAddressResult(item)" class="result">
+      <div class="main-text">{{ item.structured_formatting.main_text }}</div>
+      <div class="secondary-text">
+        {{ item.structured_formatting.secondary_text }}
+      </div>
+    </div>
+    }
+  </div>
+  } @if(formStep()=='map'){
+  <div class="header">
+    <p class="snappy-title">Address Confirmation</p>
+  </div>
+  <div class="map-container">
+    <google-map
+      height="450px"
+      width="100%"
+      [center]="center()"
+      [zoom]="zoom"
+      [mapTypeId]="matTypeId"
+      [options]="mapOtions"
+      (idle)="onMapIdle()"
+    >
+    </google-map>
+    <svg-icon
+      src="assets/icons/map_pin_solid.svg"
+      class="icon-map-pin"
+    ></svg-icon>
+  </div>
+
+  <div class="button-container">
+    <app-button text="Confirm Address" (click)="confirmAddress()"></app-button>
+  </div>
+  } @if(formStep()=='form'){
+  <div class="header">
+    <p class="snappy-title">Address</p>
+  </div>
+  <form class="form" [formGroup]="form">
+    <app-input
+      formControlName="address"
+      label="Address"
+      placeholder="Your address"
+      name="address"
+    ></app-input>
+    <app-input
+      formControlName="detail"
+      label="Detail: apt/flat/house"
+      placeholder="ex. Rio de oro building apt 201"
+      name="detail"
+    ></app-input>
+    <app-input
+      formControlName="recipientName"
+      label="Name"
+      placeholder="ex. James Hetfield"
+      name="name"
+    ></app-input>
+    <app-input
+      formControlName="phone"
+      label="Phone Number"
+      placeholder="Your phone"
+      name="phone"
+    ></app-input>
+    <app-input formControlName="references" label="References"></app-input>
+  </form>
+
+  <div class="button-container">
+    <app-button text="Save Address" (click)="saveAddress()"></app-button>
+  </div>
+  } @if (loading() == LoadingStatus.Loading) {
+  <div class="loader">
+    <mat-spinner diameter="28" color="#ffffff"></mat-spinner>
+  </div>
+  }
+</div>

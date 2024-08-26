@@ -4,18 +4,16 @@
     <div class="label">{{ label }}</div>
   </div>
   }
-  <div class="input-wrapper">
-    <input
-      class="input"
-      [placeholder]="placeholder"
-      [value]="value"
-      (input)="handleInput($event)"
-      (blur)="handleBlur()"
-      [disabled]="disabled"
-      [name]="name"
-    />
-    <div class="error-container">
-      <span class="error"> {{ errorMessage }} </span>
-    </div>
+  <input
+    class="input"
+    [placeholder]="placeholder"
+    [value]="value"
+    (input)="handleInput($event)"
+    (blur)="handleBlur()"
+    [disabled]="disabled"
+    [name]="name"
+  />
+  <div class="error-container">
+    <span class="error"> {{ errorMessage }} </span>
   </div>
 </div>

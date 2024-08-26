@@ -1,0 +1,151 @@
+.dialog-content {
+  position: relative;
+  padding-bottom: 24px;
+  .header {
+    padding: 24px 24px 0 24px;
+  }
+
+  .loader {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 100;
+    background-color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    mat-spinner {
+      --mdc-circular-progress-active-indicator-color: rgb(
+        var(--primaryPearlAqua)
+      );
+    }
+  }
+}
+
+.input-container {
+  background-color: var(--bgInput);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+
+  .icon {
+    position: absolute;
+    z-index: 0;
+    left: 15px;
+    height: 28px;
+    width: 28px;
+    svg {
+      height: 28px;
+      width: 28px;
+      color: rgb(var(--textArsenic));
+      opacity: 0.5;
+    }
+  }
+
+  .input {
+    z-index: 1;
+
+    width: 100%;
+    height: 44px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 0;
+    padding-left: 10px + 28px + 15px;
+    padding-right: 20px;
+
+    font-size: 15px;
+    line-height: 22px;
+    color: rgb(var(--textYankeesBlue));
+
+    &::placeholder {
+      color: rgb(var(--textArsenic));
+      opacity: 0.5;
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 22px;
+    }
+  }
+
+  mat-spinner {
+    right: 15px;
+    --mdc-circular-progress-active-indicator-color: rgb(
+      var(--primaryPearlAqua)
+    );
+  }
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+
+  .result {
+    height: 80px;
+    padding: 0px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 1px solid rgba(var(--textArsenic), 0.1);
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--primaryCultured);
+    }
+
+    .main-text {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 22px;
+      color: rgb(var(--textCoolBlack));
+    }
+    .secondary-text {
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 16px;
+      color: rgb(var(--textArsenic));
+    }
+  }
+}
+
+.map-container {
+  position: relative;
+
+  .icon-map-pin {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    height: 60px;
+    width: 60px;
+    pointer-events: none;
+
+    svg {
+      height: 60px;
+      width: 60px;
+      color: rgb(var(--primaryPearlAqua));
+    }
+  }
+}
+
+.form {
+  width: 100%;
+  height: min-content;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin: 0 auto;
+  padding: 0 24px 0 24px;
+
+  gap: 16px;
+}
+
+.button-container {
+  padding: 24px;
+}

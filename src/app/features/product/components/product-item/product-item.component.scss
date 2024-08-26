@@ -47,7 +47,7 @@ a.product-item {
       }
 
       &.is-favorite {
-        background-color: var(--primaryPearlAqua);
+        background-color: rgb(var(--primaryPearlAqua));
       }
     }
   }

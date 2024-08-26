@@ -11,6 +11,8 @@
       position: absolute;
       z-index: 0;
       left: 15px;
+      height: 28px;
+      width: 28px;
       svg {
         height: 28px;
         width: 28px;
@@ -46,7 +48,7 @@
 
     mat-spinner {
       right: 15px;
-      --mdc-circular-progress-active-indicator-color: var(--primaryPearlAqua);
+      --mdc-circular-progress-active-indicator-color: rgb(var(--primaryPearlAqua));
     }
   }
 

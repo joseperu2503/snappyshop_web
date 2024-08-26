@@ -1,30 +1,48 @@
-export interface AdressesResponse {
-  readonly results: Address[];
-  readonly info: Info;
-}
-
-export interface Info {
-  readonly per_page: number;
-  readonly current_page: number;
-  readonly last_page: number;
-  readonly total: number;
-}
-
 export interface Address {
   readonly id: number;
-  readonly user: User;
   readonly address: string;
   readonly detail: string;
   readonly phone: string;
   readonly recipient_name: string;
-  readonly references: null;
+  readonly references: null | string;
   readonly latitude: number;
   readonly longitude: number;
-  readonly primary: boolean;
-  readonly created_at: Date;
+  readonly default: boolean;
+  readonly country: string;
+  readonly locality: string;
+  readonly plus_code: string;
+  readonly postal_code: string;
 }
 
-export interface User {
-  readonly id: number;
-  readonly name: string;
+export interface AddressResult {
+  readonly place_id: string;
+  readonly structured_formatting: StructuredFormatting;
+}
+
+interface StructuredFormatting {
+  readonly main_text: string;
+  readonly secondary_text: string;
+}
+
+export interface PlaceDetails {
+  readonly location: Location;
+  readonly viewport: Viewport;
+}
+
+interface Location {
+  readonly lat: number;
+  readonly lng: number;
+}
+
+interface Viewport {
+  readonly northeast: Location;
+  readonly southwest: Location;
+}
+
+export interface GeocodeResponse {
+  readonly address: string;
+  readonly country: string;
+  readonly locality: string;
+  readonly postal_code: string;
+  readonly global_code: string;
 }

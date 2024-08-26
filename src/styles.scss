@@ -87,6 +87,8 @@ $snappyshop_web-theme: mat.define-theme(
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --mdc-dialog-container-color: var(--white)
 }
 
 .spacer {

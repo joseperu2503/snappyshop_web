@@ -1,5 +1,12 @@
-.addresses {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+.page-container {
+  max-width: 400px;
+  margin: 0 auto;
+
+  .addresses {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    margin-bottom: 32px;
+  }
 }

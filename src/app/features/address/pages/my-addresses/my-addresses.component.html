@@ -12,9 +12,15 @@
 </div> -->
 
 <app-page title="My addresses">
-  <div class="addresses">
-    @for (item of addressStore.addresses(); track $index) {
-    <app-address-item [address]="item"></app-address-item>
-    }
+  <div class="page-container">
+    <div class="addresses">
+      @for (item of addressStore.addresses(); track $index) {
+      <app-address-item [address]="item"></app-address-item>
+      }
+    </div>
+    <app-button
+      text="Add address"
+      (click)="addressStore.openForm()"
+    ></app-button>
   </div>
 </app-page>

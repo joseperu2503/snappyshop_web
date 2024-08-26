@@ -2,88 +2,44 @@ import { HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from '../../../core/services/api/api.service';
-import { AdressesResponse } from '../dtos/addresses-response.dto';
+import {
+  Address,
+  AddressResult,
+  GeocodeResponse,
+  PlaceDetails,
+} from '../dtos/addresses-response.dto';
+import { AddressRequest } from '../dtos/address-request.dto';
+import { SuccessResponse } from '../../../shared/dtos/success-response.dto';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AddressService {
-  private api = inject(ApiService);
+  readonly api = inject(ApiService);
 
   getAddresses() {
-    return this.api.get<AdressesResponse>(`addresses/my-addresses`);
+    return this.api.get<Address[]>(`addresses`);
   }
 
-  searchAddresses(query: string) {
-    const httpParams = new HttpParams().set('query', query);
+  searchAddresses(input: string) {
+    const httpParams = new HttpParams().set('input', input);
 
-    return this.api.get<GoogleMapsAutocompleteResponse>(
-      `addresses/autocomplete`,
-      httpParams
-    );
+    return this.api.get<AddressResult[]>(`addresses/autocomplete`, httpParams);
   }
 
-  getPlaceDetails(placeId: string): Observable<any> {
+  getPlaceDetails(placeId: string): Observable<PlaceDetails> {
     const httpParams = new HttpParams().set('place_id', placeId);
 
-    return this.api.get<GoogleMapsAutocompleteResponse>(
-      `addresses/details`,
-      httpParams
-    );
+    return this.api.get<PlaceDetails>(`addresses/place-details`, httpParams);
   }
-}
 
-export interface GoogleMapsAutocompleteResponse {
-  readonly predictions: Prediction[];
-}
+  geocode(lat: number, lng: number): Observable<GeocodeResponse> {
+    const httpParams = new HttpParams().set('lat', lat).set('lng', lng);
 
-export interface Prediction {
-  readonly description: string;
-  readonly matched_substrings: MatchedSubstring[];
-  readonly place_id: string;
-  readonly reference: string;
-  readonly structured_formatting: StructuredFormatting;
-  readonly terms: Term[];
-  readonly types: string[];
-}
+    return this.api.get<GeocodeResponse>(`addresses/geocode`, httpParams);
+  }
 
-export interface MatchedSubstring {
-  readonly length: number;
-  readonly offset: number;
-}
-
-export interface StructuredFormatting {
-  readonly main_text: string;
-  readonly main_text_matched_substrings: MatchedSubstring[];
-  readonly secondary_text: string;
-}
-
-export interface Term {
-  readonly offset: number;
-  readonly value: string;
-}
-
-export interface PlaceDetail {
-  readonly result: Result;
-  readonly status: string;
-}
-
-export interface Result {
-  readonly formatted_address: string;
-  readonly geometry: Geometry;
-}
-
-export interface Geometry {
-  readonly location: Location;
-  readonly viewport: Viewport;
-}
-
-export interface Location {
-  readonly lat: number;
-  readonly lng: number;
-}
-
-export interface Viewport {
-  readonly northeast: Location;
-  readonly southwest: Location;
+  createAddress(request: AddressRequest): Observable<SuccessResponse> {
+    return this.api.post<SuccessResponse>(`addresses`, request);
+  }
 }
