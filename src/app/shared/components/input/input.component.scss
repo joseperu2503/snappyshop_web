@@ -19,12 +19,15 @@
     padding: 0px 20px;
 
     font-size: 14px;
+    font-weight: 400;
     line-height: 22px;
 
     &::placeholder {
       color: rgba(var(--textArsenic), 0.5);
       opacity: 0.5;
       font-size: 14px;
+      font-weight: 400;
+
       line-height: 22px;
     }
   }
