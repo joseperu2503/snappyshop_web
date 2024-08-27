@@ -10,7 +10,6 @@ export interface ProductDTO {
   readonly store: Store;
   readonly discount: number | null;
   readonly sale_price: number;
-  readonly base_price: number | null;
   readonly created_at: Date;
   is_favorite: boolean;
 }
