@@ -142,7 +142,7 @@
   margin: 0 auto;
   padding: 0 24px 0 24px;
 
-  gap: 16px;
+  gap: var(--formInputSpacing);
 }
 
 .button-container {
