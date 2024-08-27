@@ -55,6 +55,14 @@ export const routes: Routes = [
             './features/address/pages/my-addresses/my-addresses.component'
           ),
       },
+      {
+        path: 'change-password',
+        canActivate: [authGuard],
+        loadComponent: () =>
+          import(
+            './features/change-password/pages/change-password/change-password.component'
+          ),
+      },
     ],
   },
 ];

@@ -68,7 +68,9 @@ export class UserButtonComponent {
     {
       icon: 'assets/icons/lock.svg',
       label: 'Change Password',
-      onPress: () => {},
+      onPress: () => {
+        this.router.navigate(['/change-password']);
+      },
     },
     {
       icon: 'assets/icons/logout.svg',
