@@ -8,7 +8,9 @@ export interface ProductDTO {
   readonly category: Category;
   readonly colors: string[];
   readonly store: Store;
-  readonly discount: number;
+  readonly discount: number | null;
+  readonly sale_price: number;
+  readonly base_price: number | null;
   readonly created_at: Date;
   is_favorite: boolean;
 }

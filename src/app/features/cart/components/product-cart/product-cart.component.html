@@ -6,8 +6,8 @@
     <div class="product-name-row">
       <p class="product-name">{{ product().name }}</p>
       <div class="product-price">
-        <p class="product-sale-price">{{ salePrice() | price }}</p>
-        <p class="product-base-price">{{ basePrice() | price }}</p>
+        <p class="product-sale-price">{{ product().sale_price | price }}</p>
+        <p class="product-base-price">{{ product().base_price | price }}</p>
       </div>
     </div>
     <div class="product-quantity">

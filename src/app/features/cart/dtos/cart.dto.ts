@@ -7,7 +7,9 @@ export interface CreateCartResponse {
 }
 
 export interface CartDTO {
-  readonly total_amount: number;
+  readonly subtotal: number;
+  readonly shipping_fee: number;
+  readonly total: number;
   readonly products: ProductCart[];
 }
 

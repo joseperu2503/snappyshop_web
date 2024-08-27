@@ -52,8 +52,9 @@ export class CartStore {
     );
 
     if (productIndex >= 0) {
-      this.cart.update((value) => {
+      this.cart!.update((value) => {
         return {
+          ...value!,
           products: value!.products
             .map((pc) => {
               if (pc.product_detail.id == product.id) {
@@ -65,12 +66,12 @@ export class CartStore {
               return pc;
             })
             .filter((pc) => pc.quantity != 0),
-          total_amount: value!.total_amount,
         };
       });
     } else {
       this.cart.update((value) => {
         return {
+          ...value!,
           products: [
             ...value!.products,
             {
@@ -79,7 +80,6 @@ export class CartStore {
               quantity: quantity,
             },
           ],
-          total_amount: value!.total_amount,
         };
       });
     }

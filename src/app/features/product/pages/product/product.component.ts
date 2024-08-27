@@ -75,22 +75,6 @@ export default class ProductComponent implements OnChanges, AfterViewInit {
     return this.productDetail()?.store ?? null;
   });
 
-  basePrice = computed<number | null>(() => {
-    if (!this.product()) return null;
-    if (!this.product()!.discount) {
-      return null;
-    }
-    return this.product()!.price;
-  });
-
-  salePrice = computed<number | null>(() => {
-    if (!this.product()) return null;
-    if (!this.product()!.discount) {
-      return this.product()!.price;
-    }
-    return this.product()!.price * (1 - this.product()!.discount / 100);
-  });
-
   ngAfterViewInit() {
     this.swiper.nativeElement.swiper.on(
       'slideNextTransitionEnd',

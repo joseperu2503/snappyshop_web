@@ -26,20 +26,6 @@ export class ProductItemComponent {
   public product = input.required<ProductDTO>();
   productStore = inject(ProductStore);
 
-  basePrice = computed<number | null>(() => {
-    if (!this.product().discount) {
-      return null;
-    }
-    return this.product()!.price;
-  });
-
-  salePrice = computed<number | null>(() => {
-    if (!this.product().discount) {
-      return this.product().price;
-    }
-    return this.product()!.price * (1 - this.product()!.discount / 100);
-  });
-
   toggleFavorite(event: MouseEvent): void {
     event.stopPropagation();
     event.preventDefault();
