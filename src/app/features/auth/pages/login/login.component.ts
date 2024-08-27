@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { InputComponent } from '../../../../shared/components/input/input.component';
 import {
   FormControl,
@@ -11,11 +11,17 @@ import { UtilService } from '../../../../shared/services/util/util.service';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
 import { MatDialogRef } from '@angular/material/dialog';
 import { GoogleAuthService } from '../../services/google-auth/google-auth.service';
+import { SocialButtonComponent } from '../../../../shared/components/social-button/social-button.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [InputComponent, ReactiveFormsModule, ButtonComponent],
+  imports: [
+    InputComponent,
+    ReactiveFormsModule,
+    ButtonComponent,
+    SocialButtonComponent,
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -38,14 +44,15 @@ export default class LoginComponent {
     }),
   });
 
-  loading = false;
+  loading = signal(false);
+  loadingGoogle = signal(false);
 
   login() {
     if (!this.form.valid) {
       this.form.markAllAsTouched();
       return;
     }
-    this.loading = true;
+    this.loading.set(true);
     const { email, password } = this.form.getRawValue();
     this.authService
       .login({
@@ -55,16 +62,17 @@ export default class LoginComponent {
       .subscribe({
         next: () => {
           this.dialogRef.close(true);
-          this.loading = false;
+          this.loading.set(false);
         },
         error: (error) => {
           this.utilService.openSnackBar(error.error.message);
-          this.loading = false;
+          this.loading.set(false);
         },
       });
   }
 
   loginGoogle() {
+    this.loadingGoogle.set(true);
     this.googleAuthService.login();
   }
 }

@@ -1,5 +1,5 @@
 button {
-  height: 48px;
+  height: var(--buttonHeight);
   width: 100%;
   border-radius: 12px;
   --mdc-text-button-label-text-font: "Poppins";

@@ -18,10 +18,15 @@
   </form>
   <div style="height: 42px"></div>
 
-  <app-button text="Log In" (click)="login()" [loading]="loading"></app-button>
   <app-button
+    text="Log In"
+    (click)="login()"
+    [loading]="loading()"
+  ></app-button>
+  <p class="other-method">Or using other method</p>
+  <app-social-button
     text="Log In Google"
     (click)="loginGoogle()"
-    [loading]="loading"
-  ></app-button>
+    [loading]="loadingGoogle()"
+  ></app-social-button>
 </div>
