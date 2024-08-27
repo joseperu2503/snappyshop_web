@@ -25,6 +25,7 @@
     "@angular/platform-browser-dynamic": "^18.1.0",
     "@angular/router": "^18.1.0",
     "@types/lodash": "^4.17.7",
+    "angular-oauth2-oidc": "^17.0.2",
     "angular-svg-icon": "^18.0.1",
     "jwt-decode": "^4.0.0",
     "lodash": "^4.17.21",

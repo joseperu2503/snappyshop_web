@@ -1,12 +1,12 @@
 import { Injectable, inject } from '@angular/core';
-import { LoginFormDTO } from '../dtos/login-form.dto';
-import { LoginResponseDTO } from '../dtos/login-response.dto';
-import { ApiService } from '../../../core/services/api/api.service';
+import { LoginFormDTO } from '../../dtos/login-form.dto';
+import { LoginResponseDTO } from '../../dtos/login-response.dto';
+import { ApiService } from '../../../../core/services/api/api.service';
 import { tap } from 'rxjs';
-import { TokenService } from '../../../core/services/token/token.service';
+import { TokenService } from '../../../../core/services/token/token.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import LoginComponent from '../pages/login/login.component';
-import { UserService } from '../../user/services/user.service';
+import LoginComponent from '../../pages/login/login.component';
+import { UserService } from '../../../user/services/user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,11 +18,25 @@ export class AuthService {
   readonly dialog = inject(MatDialog);
 
   login(data: LoginFormDTO) {
-    return this.api
-      .post<LoginResponseDTO>(`auth/login`, data)
-      .pipe(
-        tap((response) => this.tokenService.saveToken(response.access_token))
-      );
+    return this.api.post<LoginResponseDTO>(`auth/login`, data).pipe(
+      tap((response) => {
+        this.tokenService.saveToken(response.access_token);
+        this.userService.setStorageUser(response.user);
+      })
+    );
+  }
+
+  loginGoogle(idToken: string) {
+    const body = {
+      id_token: idToken,
+    };
+
+    return this.api.post<LoginResponseDTO>(`auth/login-google`, body).pipe(
+      tap((response) => {
+        this.tokenService.saveToken(response.access_token);
+        this.userService.setStorageUser(response.user);
+      })
+    );
   }
 
   openLoginDialog(): void {

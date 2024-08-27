@@ -4,7 +4,7 @@ import { LoadingStatus } from '../../../core/enums/loading-status.enum';
 import { ProductService } from '../services/product.service';
 import { UtilService } from '../../../shared/services/util/util.service';
 import { ProductDetailDTO } from '../dtos/products-detail.dto';
-import { AuthService } from '../../auth/services/auth.service';
+import { AuthService } from '../../auth/services/auth/auth.service';
 import { WishlistStore } from '../../wishlist/stores/wishlist.store';
 import { firstValueFrom } from 'rxjs';
 

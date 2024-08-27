@@ -1,8 +1,10 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit, inject, signal } from '@angular/core';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { UserService } from './features/user/services/user.service';
 import { CartStore } from './features/cart/stores/cart.store';
 import { GoogleMapsService } from './shared/services/google-maps/google-maps.service';
+import { AuthService } from './features/auth/services/auth/auth.service';
+import { skip } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -12,11 +14,43 @@ import { GoogleMapsService } from './shared/services/google-maps/google-maps.ser
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-  private userService = inject(UserService);
-  private cartStore = inject(CartStore);
-  private googleMapsServices = inject(GoogleMapsService);
+  private readonly userService = inject(UserService);
+  private readonly cartStore = inject(CartStore);
+  private readonly googleMapsServices = inject(GoogleMapsService);
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
+  private readonly authService = inject(AuthService);
+
+  appReady = signal(false);
 
   ngOnInit() {
+    this.route.fragment.pipe(skip(1)).subscribe((fragment) => {
+      if (fragment) {
+        const params = new URLSearchParams(fragment);
+        const idToken = params.get('id_token');
+        if (idToken) {
+          this.authService.loginGoogle(idToken).subscribe({
+            next: () => {
+              this.initApp();
+              this.router.navigate(['/'], { replaceUrl: true });
+            },
+            error: (error) => {
+              this.initApp();
+              this.router.navigate(['/'], { replaceUrl: true });
+            },
+          });
+
+          return;
+        }
+      }
+
+      this.initApp();
+    });
+  }
+
+  initApp() {
+    if (this.appReady()) return;
+    this.appReady.set(true);
     this.userService.getUser();
     this.cartStore.getCart();
     this.googleMapsServices.loadGoogleMapsScript();

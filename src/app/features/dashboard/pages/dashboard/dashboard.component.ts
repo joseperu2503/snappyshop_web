@@ -22,6 +22,7 @@ export default class DashboardComponent
 {
   productStore = inject(ProductStore);
   LoadingStatus = LoadingStatus;
+
   ngOnInit() {
     this.productStore.getProducts();
   }

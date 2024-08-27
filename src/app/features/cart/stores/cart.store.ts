@@ -5,7 +5,7 @@ import { ProductDTO } from '../../product/dtos/product.dto';
 import { LoadingStatus } from '../../../core/enums/loading-status.enum';
 import { Subscription } from 'rxjs';
 import { TokenService } from '../../../core/services/token/token.service';
-import { AuthService } from '../../auth/services/auth.service';
+import { AuthService } from '../../auth/services/auth/auth.service';
 
 @Injectable({
   providedIn: 'root',

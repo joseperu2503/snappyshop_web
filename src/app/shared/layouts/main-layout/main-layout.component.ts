@@ -5,7 +5,7 @@ import { SvgIconComponent } from 'angular-svg-icon';
 import { UserService } from '../../../features/user/services/user.service';
 import { MatRippleModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
-import { AuthService } from '../../../features/auth/services/auth.service';
+import { AuthService } from '../../../features/auth/services/auth/auth.service';
 import { UserButtonComponent } from '../../components/user-button/user-button.component';
 
 @Component({

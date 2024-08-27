@@ -6,10 +6,11 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/auth/auth.service';
 import { UtilService } from '../../../../shared/services/util/util.service';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
 import { MatDialogRef } from '@angular/material/dialog';
+import { GoogleAuthService } from '../../services/google-auth/google-auth.service';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export default class LoginComponent {
   private authService = inject(AuthService);
+  private googleAuthService = inject(GoogleAuthService);
   private utilService = inject(UtilService);
   dialogRef: MatDialogRef<LoginComponent, boolean> = inject(
     MatDialogRef<LoginComponent, boolean>
@@ -60,5 +62,9 @@ export default class LoginComponent {
           this.loading = false;
         },
       });
+  }
+
+  loginGoogle() {
+    this.googleAuthService.login();
   }
 }

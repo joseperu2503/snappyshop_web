@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { UserService } from '../../../features/user/services/user.service';
-import { AuthService } from '../../../features/auth/services/auth.service';
+import { AuthService } from '../../../features/auth/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { SvgIconComponent } from 'angular-svg-icon';
 import { CommonModule } from '@angular/common';

@@ -1,7 +1,7 @@
 import { Injectable, inject, signal } from '@angular/core';
 import { AddressService } from '../services/address.service';
 import { Address } from '../dtos/addresses-response.dto';
-import { AuthService } from '../../auth/services/auth.service';
+import { AuthService } from '../../auth/services/auth/auth.service';
 import { LoadingStatus } from '../../../core/enums/loading-status.enum';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import {

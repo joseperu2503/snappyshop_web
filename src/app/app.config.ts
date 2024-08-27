@@ -14,7 +14,7 @@ import { provideAngularSvgIcon } from 'angular-svg-icon';
 import { tokenInterceptor } from './core/interceptors/token/token.interceptor';
 import { getMessaging, provideMessaging } from '@angular/fire/messaging';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-
+import { provideOAuthClient } from 'angular-oauth2-oidc';
 import { environment } from '../environments/environment';
 
 const scrollConfig: InMemoryScrollingOptions = {
@@ -37,5 +37,6 @@ export const appConfig: ApplicationConfig = {
     provideAngularSvgIcon(),
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideMessaging(() => getMessaging()),
+    provideOAuthClient(),
   ],
 };
