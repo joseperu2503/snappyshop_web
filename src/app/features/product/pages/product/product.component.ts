@@ -75,8 +75,6 @@ export default class ProductComponent implements OnChanges, AfterViewInit {
     return this.productDetail()?.store ?? null;
   });
 
-  math = Math;
-
   basePrice = computed<number | null>(() => {
     if (!this.product()) return null;
     if (!this.product()!.discount) {
