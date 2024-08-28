@@ -9,7 +9,7 @@ import {
 import { AuthService } from '../../services/auth/auth.service';
 import { UtilService } from '../../../../shared/services/util/util.service';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { GoogleAuthService } from '../../services/google-auth/google-auth.service';
 import { SocialButtonComponent } from '../../../../shared/components/social-button/social-button.component';
 
@@ -21,6 +21,7 @@ import { SocialButtonComponent } from '../../../../shared/components/social-butt
     ReactiveFormsModule,
     ButtonComponent,
     SocialButtonComponent,
+    MatDialogModule,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
