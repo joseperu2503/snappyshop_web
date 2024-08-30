@@ -1,6 +1,6 @@
 <div>
   <app-search-input-mask></app-search-input-mask>
-  <div class="grid-container">
+  <div class="grid-products">
     @for (product of productStore.products(); track $index) {
     <app-product-item [product]="product"> </app-product-item>
     } @if (productStore.loadingProducts() === LoadingStatus.Loading) { @for

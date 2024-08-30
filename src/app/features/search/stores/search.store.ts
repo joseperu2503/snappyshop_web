@@ -33,7 +33,15 @@ export class SearchStore {
     this.products.set([]);
     this.page.set(1);
     this.totalPages.set(1);
-    this.getProducts();
+
+    if (this.debounceTimeout) {
+      clearTimeout(this.debounceTimeout);
+    }
+    this.loadingProducts.set(LoadingStatus.Loading);
+
+    this.debounceTimeout = setTimeout(() => {
+      this.getProducts();
+    }, 500);
   }
 
   viewMoreResults() {

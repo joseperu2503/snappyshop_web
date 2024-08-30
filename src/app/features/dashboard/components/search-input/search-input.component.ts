@@ -14,7 +14,6 @@ import { MatRippleModule } from '@angular/material/core';
   standalone: true,
   imports: [
     SvgIconComponent,
-    SvgIconComponent,
     CommonModule,
     NgClickOutsideDirective,
     ImageComponent,

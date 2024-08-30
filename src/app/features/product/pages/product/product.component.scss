@@ -15,7 +15,6 @@
 
       .swiper-container {
         aspect-ratio: 1;
-        background-color: var(--primaryCultured);
         border-radius: 15px;
 
         .swiper-slide {
@@ -27,6 +26,10 @@
             --object-fit: contain;
           }
         }
+      }
+
+      .swiper-container-skeleton {
+        aspect-ratio: 1;
       }
 
       .images-preview-container {
@@ -195,10 +198,18 @@
     flex-direction: column;
     gap: 10px;
   }
+}
 
-  .grid-container {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 16px;
+@media screen and (max-width: 900px) {
+  .content {
+    .product-detail {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 24px;
+
+      .right {
+        width: 100%;
+      }
+    }
   }
 }

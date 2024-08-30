@@ -1,8 +1,13 @@
 <div>
+  <app-search-input></app-search-input>
+
   <h2 class="snappy-title">Results</h2>
-  <div class="grid-container">
+  <div class="grid-products">
     @for (product of searchStore.products(); track $index) {
     <app-product-item [product]="product"> </app-product-item>
-    }
+    } @if (searchStore.loadingProducts() === LoadingStatus.Loading) { @for (item
+    of [].constructor(10) ; track $index) {
+    <app-product-skeleton> </app-product-skeleton>
+    } }
   </div>
 </div>

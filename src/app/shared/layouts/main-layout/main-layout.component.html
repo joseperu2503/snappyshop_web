@@ -6,7 +6,9 @@
         <span class="snappyshop">SnappyShop</span>
       </a>
 
+      @if (!router.url.includes('/search')) {
       <app-search-input></app-search-input>
+      }
 
       <div class="spacer"></div>
       <button matRipple class="heart-button center" (click)="goToWishlist()">

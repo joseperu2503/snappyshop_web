@@ -1,0 +1,52 @@
+.search-input-container {
+  .input-container {
+    background-color: var(--bgInput);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+
+    margin: 0 auto 24px auto;
+
+    .icon {
+      position: absolute;
+      z-index: 0;
+      left: 15px;
+      height: 28px;
+      width: 28px;
+      svg {
+        height: 28px;
+        width: 28px;
+        color: rgb(var(--textArsenic));
+        opacity: 0.5;
+      }
+    }
+
+    .input {
+      z-index: 1;
+
+      width: 100%;
+      height: 44px;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      padding: 0;
+      padding-left: 10px + 28px + 15px;
+      padding-right: 20px;
+
+      font-size: 15px;
+      line-height: 22px;
+      color: rgb(var(--textYankeesBlue));
+
+      &::placeholder {
+        color: rgb(var(--textArsenic));
+        opacity: 0.5;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 22px;
+      }
+    }
+  }
+}

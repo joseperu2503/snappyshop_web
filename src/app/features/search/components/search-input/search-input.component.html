@@ -1,0 +1,11 @@
+<div class="search-input-container">
+  <div class="input-container">
+    <svg-icon src="assets/icons/search.svg" class="icon"></svg-icon>
+    <input
+      class="input"
+      placeholder="Search"
+      [value]="searchStore.searchInput()"
+      (input)="handleInput($event)"
+    />
+  </div>
+</div>
