@@ -45,7 +45,7 @@ header {
     }
 
     app-search-input {
-      width: 100%;
+      width: calc(100% - 450px);
       max-width: 500px;
 
       position: absolute;
@@ -98,7 +98,7 @@ header {
   margin: 80px auto 0;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 800px) {
   app-search-input {
     display: none;
   }

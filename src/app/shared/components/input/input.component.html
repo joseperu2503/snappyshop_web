@@ -4,16 +4,29 @@
     <div class="label">{{ label }}</div>
   </div>
   }
-  <input
-    class="input"
-    [placeholder]="placeholder"
-    [value]="value"
-    (input)="handleInput($event)"
-    (blur)="handleBlur()"
-    [disabled]="disabled"
-    [name]="name"
-    [type]="type"
-  />
+  <div class="input-row">
+    <input
+      class="input"
+      [placeholder]="placeholder"
+      [value]="value"
+      (input)="handleInput($event)"
+      (blur)="handleBlur()"
+      [disabled]="disabled"
+      [name]="name"
+      [type]="type == 'password' && showPassword() ? 'text' : type"
+      [ngClass]="{ password: type == 'password' }"
+    />
+    @if (type == 'password') {
+    <svg-icon
+      [src]="
+        showPassword() ? 'assets/icons/eye.svg' : 'assets/icons/eye_closed.svg'
+      "
+      class="icon-eye"
+      (click)="togglePassword()"
+    ></svg-icon>
+    }
+  </div>
+
   <div class="error-container">
     <span class="error"> {{ errorMessage }} </span>
   </div>

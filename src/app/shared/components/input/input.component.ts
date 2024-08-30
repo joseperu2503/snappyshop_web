@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   Component,
   Host,
@@ -5,6 +6,7 @@ import {
   Optional,
   SkipSelf,
   forwardRef,
+  signal,
 } from '@angular/core';
 import {
   ControlContainer,
@@ -12,11 +14,12 @@ import {
   FormControl,
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
+import { SvgIconComponent } from 'angular-svg-icon';
 
 @Component({
   selector: 'app-input',
   standalone: true,
-  imports: [],
+  imports: [SvgIconComponent, CommonModule],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -36,6 +39,8 @@ export class InputComponent implements ControlValueAccessor {
   @Input() disabled: boolean = false;
   @Input() name?: string;
   @Input() type?: string;
+
+  showPassword = signal(false);
 
   get innerErrors() {
     return {
@@ -98,5 +103,9 @@ export class InputComponent implements ControlValueAccessor {
 
   handleBlur(): void {
     this.onTouched();
+  }
+
+  togglePassword() {
+    this.showPassword.update((value) => !value);
   }
 }

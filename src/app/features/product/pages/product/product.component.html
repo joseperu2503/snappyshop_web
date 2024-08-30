@@ -9,8 +9,7 @@
         class="swiper-container-skeleton"
         borderRadius="15px"
       ></app-skeleton>
-
-      }@else{
+      }
       <div class="swiper-container">
         <swiper-container [slidesPerView]="1" #swiper>
           @for (image of product()?.images; track $index) {
@@ -20,7 +19,6 @@
           }
         </swiper-container>
       </div>
-      }
 
       <div class="images-preview-container">
         <div class="images-preview">
