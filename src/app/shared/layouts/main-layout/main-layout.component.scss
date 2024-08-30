@@ -30,6 +30,12 @@ header {
       .logo {
         width: 24px;
       }
+
+      @media screen and (max-width: 1000px) {
+        .logo {
+          display: none;
+        }
+      }
       .snappyshop {
         font-size: 22px;
         font-weight: 700;
@@ -90,4 +96,21 @@ header {
   width: 100%;
   padding: 40px 24px 80px 24px;
   margin: 80px auto 0;
+}
+
+@media screen and (max-width: 1000px) {
+  app-search-input {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  header {
+    height: 58px;
+  }
+
+  .body {
+    padding: 24px 24px 80px 24px;
+    margin: 58px auto 0;
+  }
 }

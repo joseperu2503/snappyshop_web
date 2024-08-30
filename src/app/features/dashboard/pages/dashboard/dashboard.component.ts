@@ -9,11 +9,16 @@ import { ProductItemComponent } from '../../../product/components/product-item/p
 import { ProductStore } from '../../../product/stores/product.store';
 import { ProductSkeletonComponent } from '../../../product/components/product-skeleton/product-skeleton.component';
 import { LoadingStatus } from '../../../../core/enums/loading-status.enum';
+import { SearchInputMaskComponent } from '../../components/search-input-mask/search-input-mask.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [ProductItemComponent, ProductSkeletonComponent],
+  imports: [
+    ProductItemComponent,
+    ProductSkeletonComponent,
+    SearchInputMaskComponent,
+  ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
