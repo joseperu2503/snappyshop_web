@@ -1,16 +1,15 @@
 <div class="content">
   <div class="product-detail">
     <div class="left">
-      @if (loading() === LoadingStatus.Loading) {
-      <app-skeleton
-        width="100%"
-        height="100%"
-        lineHeight="100%"
-        class="swiper-container-skeleton"
-        borderRadius="15px"
-      ></app-skeleton>
-      }
       <div class="swiper-container">
+        @if (loading() === LoadingStatus.Loading) {
+        <app-skeleton
+          width="100%"
+          lineHeight="100%"
+          height="100%"
+          borderRadius="15px"
+        ></app-skeleton>
+        }
         <swiper-container [slidesPerView]="1" #swiper>
           @for (image of product()?.images; track $index) {
           <swiper-slide class="swiper-slide">
