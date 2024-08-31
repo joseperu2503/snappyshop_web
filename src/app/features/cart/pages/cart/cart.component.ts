@@ -4,11 +4,12 @@ import { ButtonComponent } from '../../../../shared/components/button/button.com
 import { PricePipe } from '../../../../core/pipes/price/price.pipe';
 import { CartStore } from '../../stores/cart.store';
 import { LoadingStatus } from '../../../../core/enums/loading-status.enum';
+import { SharedModule } from '../../../../shared/shared.module';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [ProductCartComponent, ButtonComponent, PricePipe],
+  imports: [ProductCartComponent, ButtonComponent, PricePipe, SharedModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
 })

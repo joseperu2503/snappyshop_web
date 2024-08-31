@@ -1,8 +1,8 @@
-<div>
+<div class="page">
   <h2 class="snappy-title">Cart</h2>
 
-  <div class="page-container">
-    <div class="product-carts">
+  <div class="page-content">
+    <div class="products">
       @for (productCart of cartStore.cart()?.products; track $index) {
 
       <app-product-cart [productCart]="productCart"></app-product-cart>
