@@ -12,13 +12,21 @@ export class NotificationService {
 
   async getDeviceToken() {
     try {
+      const registration = await navigator.serviceWorker.register(
+        'firebase-messaging-sw.js'
+      );
+
+      // Wait for serviceWorker.ready
+      await navigator.serviceWorker.ready;
+
       const token: string = await getToken(this._messaging, {
         vapidKey: environment.vapidKey,
+        serviceWorkerRegistration: registration,
       });
 
       return token;
     } catch (error) {
-      console.log('Token error', error);
+      // console.log('Token error', error);
       return null;
     }
   }
@@ -26,7 +34,7 @@ export class NotificationService {
   async saveFcmToken() {
     const token = await this.getDeviceToken();
     if (token) {
-      console.log(token);
+      // console.log(token);
       this.api
         .post(`notification/save-device-fcm-token`, {
           token: token,
