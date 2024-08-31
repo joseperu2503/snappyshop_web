@@ -5,6 +5,7 @@ import { CartStore } from './features/cart/stores/cart.store';
 import { GoogleMapsService } from './shared/services/google-maps/google-maps.service';
 import { AuthService } from './features/auth/services/auth/auth.service';
 import { skip } from 'rxjs';
+import { NotificationService } from './features/notification/services/notification.service';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,7 @@ export class AppComponent implements OnInit {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly authService = inject(AuthService);
+  private readonly notificationService = inject(NotificationService);
 
   appReady = signal(false);
 
@@ -54,5 +56,6 @@ export class AppComponent implements OnInit {
     this.userService.getUser();
     this.cartStore.getCart();
     this.googleMapsServices.loadGoogleMapsScript();
+    this.notificationService.saveFcmToken();
   }
 }

@@ -4,7 +4,6 @@ import { TokenService } from '../../../core/services/token/token.service';
 import { UserDTO } from '../dtos/user.dto';
 import { UtilService } from '../../../shared/services/util/util.service';
 import { StorageService } from '../../../core/services/storage/storage.service';
-import { NotificationService } from '../../notification/services/notification.service';
 import {
   UpdateAccountInformationRequestDTO,
   UpdateAccountInformationResponseDTO,
@@ -18,7 +17,6 @@ export class UserService {
   private tokenService = inject(TokenService);
   private utilService = inject(UtilService);
   private storageService = inject(StorageService);
-  private notificationService = inject(NotificationService);
 
   user = signal<UserDTO | null>(null);
 
@@ -28,7 +26,6 @@ export class UserService {
     return this.api.get<UserDTO>(`account/profile`).subscribe({
       next: (response) => {
         this.setStorageUser(response);
-        this.notificationService.saveFcmToken();
       },
       error: () => {
         this.utilService.openSnackBar(
