@@ -29,7 +29,7 @@
             class="cart-icon"
           ></svg-icon>
         </button>
-        @if(userService.user()){
+        @if(userService.user() && cartStore.numProducts() > 0){
         <div class="badge center">
           {{ cartStore.numProducts() > 9 ? "+9" : cartStore.numProducts() }}
         </div>
