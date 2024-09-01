@@ -1,11 +1,8 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
-import { UserService } from './features/user/services/user.service';
-import { CartStore } from './features/cart/stores/cart.store';
-import { GoogleMapsService } from './shared/services/google-maps/google-maps.service';
 import { AuthService } from './features/auth/services/auth/auth.service';
 import { skip } from 'rxjs';
-import { NotificationService } from './features/notification/services/notification.service';
+import { AppService } from './app.service';
 
 @Component({
   selector: 'app-root',
@@ -15,15 +12,11 @@ import { NotificationService } from './features/notification/services/notificati
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-  private readonly userService = inject(UserService);
-  private readonly cartStore = inject(CartStore);
-  private readonly googleMapsServices = inject(GoogleMapsService);
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly authService = inject(AuthService);
-  private readonly notificationService = inject(NotificationService);
 
-  appReady = signal(false);
+  readonly appService = inject(AppService);
 
   ngOnInit() {
     this.route.fragment.pipe(skip(1)).subscribe((fragment) => {
@@ -33,11 +26,11 @@ export class AppComponent implements OnInit {
         if (idToken) {
           this.authService.loginGoogle(idToken).subscribe({
             next: () => {
-              this.initApp();
+              this.appService.initApp();
               this.router.navigate(['/'], { replaceUrl: true });
             },
             error: (error) => {
-              this.initApp();
+              this.appService.initApp();
               this.router.navigate(['/'], { replaceUrl: true });
             },
           });
@@ -46,16 +39,7 @@ export class AppComponent implements OnInit {
         }
       }
 
-      this.initApp();
+      this.appService.initApp();
     });
-  }
-
-  initApp() {
-    if (this.appReady()) return;
-    this.appReady.set(true);
-    this.userService.getUser();
-    this.cartStore.getCart();
-    this.googleMapsServices.loadGoogleMapsScript();
-    this.notificationService.saveFcmToken();
   }
 }

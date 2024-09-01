@@ -7,6 +7,7 @@ import { TokenService } from '../../../../core/services/token/token.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import LoginComponent from '../../pages/login/login.component';
 import { UserService } from '../../../user/services/user.service';
+import { AppService } from '../../../../app.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +17,7 @@ export class AuthService {
   private tokenService = inject(TokenService);
   private userService = inject(UserService);
   readonly dialog = inject(MatDialog);
+  readonly appService = inject(AppService);
 
   login(data: LoginFormDTO) {
     return this.api.post<LoginResponseDTO>(`auth/login`, data).pipe(
@@ -51,7 +53,7 @@ export class AuthService {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        window.location.reload();
+        this.appService.resetApp();
       }
     });
   }
@@ -64,6 +66,6 @@ export class AuthService {
   logout() {
     this.tokenService.removeToken();
     this.userService.removeStorageUser();
-    window.location.reload();
+    this.appService.resetApp();
   }
 }
