@@ -1,7 +1,6 @@
-import { Injectable, inject, signal } from '@angular/core';
+import { Injectable, Injector, inject, signal } from '@angular/core';
 import { UserService } from './features/user/services/user.service';
 import { CartStore } from './features/cart/stores/cart.store';
-import { GoogleMapsService } from './shared/services/google-maps/google-maps.service';
 import { NotificationService } from './features/notification/services/notification.service';
 
 @Injectable({
@@ -9,9 +8,8 @@ import { NotificationService } from './features/notification/services/notificati
 })
 export class AppService {
   private readonly userService = inject(UserService);
-  private readonly cartStore = inject(CartStore);
-  private readonly googleMapsServices = inject(GoogleMapsService);
   private readonly notificationService = inject(NotificationService);
+  private readonly injector = inject(Injector);
 
   appReady = signal(false);
 
@@ -23,8 +21,11 @@ export class AppService {
   initApp() {
     this.appReady.set(true);
     this.userService.getUser();
-    this.cartStore.getCart();
-    this.googleMapsServices.loadGoogleMapsScript();
+
+    // Lazy inject CartStore to avoid circular dependency
+    const cartStore = this.injector.get(CartStore);
+    cartStore.getCart();
+
     this.notificationService.saveFcmToken();
   }
 }

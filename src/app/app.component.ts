@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { AuthService } from './features/auth/services/auth/auth.service';
 import { skip } from 'rxjs';
 import { AppService } from './app.service';
+import { GoogleMapsService } from './shared/services/google-maps/google-maps.service';
 
 @Component({
   selector: 'app-root',
@@ -17,8 +18,11 @@ export class AppComponent implements OnInit {
   private readonly authService = inject(AuthService);
 
   readonly appService = inject(AppService);
+  private readonly googleMapsServices = inject(GoogleMapsService);
 
   ngOnInit() {
+    this.googleMapsServices.loadGoogleMapsScript();
+
     this.route.fragment.pipe(skip(1)).subscribe((fragment) => {
       if (fragment) {
         const params = new URLSearchParams(fragment);
