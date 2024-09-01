@@ -45,7 +45,7 @@ export class AuthService {
       {
         width: '100%',
         maxWidth: '420px',
-        height: 'min-content'
+        maxHeight: '100vh',
       }
     );
 

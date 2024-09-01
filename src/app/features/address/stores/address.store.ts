@@ -40,8 +40,7 @@ export class AddressStore {
     const dialogRef: AddressForm = this.dialog.open(AddressFormComponent, {
       width: '100%',
       maxWidth: '500px',
-      minHeight: 'min-content',
-      maxHeight: '100%',
+      maxHeight: '100vh',
       data: {
         address: address,
       },

@@ -144,3 +144,7 @@ $snappyshop_web-theme: mat.define-theme(
     gap: 6px 16px;
   }
 }
+
+.mat-mdc-dialog-content {
+  max-height: none !important;
+}
