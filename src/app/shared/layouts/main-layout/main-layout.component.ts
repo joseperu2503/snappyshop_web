@@ -2,11 +2,12 @@ import { Component, inject } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { SearchInputComponent } from '../../../features/dashboard/components/search-input/search-input.component';
 import { SvgIconComponent } from 'angular-svg-icon';
-import { UserService } from '../../../features/user/services/user.service';
 import { MatRippleModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../../../features/auth/services/auth/auth.service';
 import { UserButtonComponent } from '../../components/user-button/user-button.component';
+import { CartStore } from '../../../features/cart/stores/cart.store';
+import { UserService } from '../../../features/user/services/user.service';
 
 @Component({
   selector: 'app-main-layout',
@@ -24,8 +25,10 @@ import { UserButtonComponent } from '../../components/user-button/user-button.co
   styleUrl: './main-layout.component.scss',
 })
 export class MainLayoutComponent {
-  authService = inject(AuthService);
-  userService = inject(UserService);
+  private readonly authService = inject(AuthService);
+  readonly userService = inject(UserService);
+
+  readonly cartStore = inject(CartStore);
 
   router = inject(Router);
 

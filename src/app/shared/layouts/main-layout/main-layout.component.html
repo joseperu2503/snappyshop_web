@@ -13,17 +13,28 @@
       <div class="spacer"></div>
       <button matRipple class="heart-button center" (click)="goToWishlist()">
         <svg-icon
-          src="assets/icons/heart_outlined.svg"
+          [src]="
+            router.url.includes('/wishlist')
+              ? 'assets/icons/heart_solid.svg'
+              : 'assets/icons/heart_outlined.svg'
+          "
           class="heart-icon"
         ></svg-icon>
       </button>
 
-      <button matRipple class="cart-button center" (click)="goToCart()">
-        <svg-icon
-          src="assets/icons/shopping_cart.svg"
-          class="cart-icon"
-        ></svg-icon>
-      </button>
+      <div class="cart-button-wrapper">
+        <button matRipple class="cart-button center" (click)="goToCart()">
+          <svg-icon
+            src="assets/icons/shopping_cart.svg"
+            class="cart-icon"
+          ></svg-icon>
+        </button>
+        @if(userService.user()){
+        <div class="badge center">
+          {{ cartStore.numProducts() > 9 ? "+9" : cartStore.numProducts() }}
+        </div>
+        }
+      </div>
 
       @if (userService.user()) {
       <app-user-button></app-user-button>

@@ -20,6 +20,20 @@ export class CartStore {
     return this.cart()?.products ?? [];
   });
 
+  numProducts = computed<number>(() => {
+    if (this.cart() != null) {
+      if (this.cart()!.products.length != 0) {
+        return this.cart()!
+          .products.map((product) => product.quantity)
+          .reduce((sum, quantity) => sum + quantity);
+      } else {
+        return 0;
+      }
+    } else {
+      return 0;
+    }
+  });
+
   getCart() {
     if (this.loadingStatus() == LoadingStatus.Loading) return;
     if (!this.authService.verifyAuth()) return;
