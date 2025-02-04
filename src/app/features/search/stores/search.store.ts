@@ -92,7 +92,7 @@ export class SearchStore {
   }
 
   getProducts() {
-    if (this.page > this.totalPages) return;
+    if (this.page() > this.totalPages()) return;
     const filter = { ...this.filter() };
 
     this.loadingProducts.set(LoadingStatus.Loading);
@@ -103,7 +103,6 @@ export class SearchStore {
       })
       .subscribe({
         next: (response) => {
-          console.log(filter, this.filter());
           if (_.isEqual(filter, this.filter())) {
             this.page.update((value) => value + 1);
             this.totalPages.set(response.info.last_page);

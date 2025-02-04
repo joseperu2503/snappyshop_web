@@ -50,7 +50,7 @@ export class NotificationService {
   onMessage(): void {
     onMessage(this._messaging, {
       next: (payload) => {
-        console.log('Message', payload);
+        // console.log('Message', payload);
       },
       error: (error) => console.log('Message error', error),
       complete: () => console.log('Done listening to messages'),
