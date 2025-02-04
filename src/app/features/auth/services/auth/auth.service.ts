@@ -8,6 +8,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import LoginComponent from '../../pages/login/login.component';
 import { UserService } from '../../../user/services/user.service';
 import { AppService } from '../../../../app.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +19,7 @@ export class AuthService {
   private userService = inject(UserService);
   readonly dialog = inject(MatDialog);
   readonly appService = inject(AppService);
+  readonly router = inject(Router);
 
   login(data: LoginFormDTO) {
     return this.api.post<LoginResponseDTO>(`auth/login`, data).pipe(
@@ -53,7 +55,8 @@ export class AuthService {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.appService.resetApp();
+        // this.appService.resetApp();
+        window.location.reload();
       }
     });
   }
@@ -66,6 +69,7 @@ export class AuthService {
   logout() {
     this.tokenService.removeToken();
     this.userService.removeStorageUser();
-    this.appService.resetApp();
+    // this.appService.resetApp();
+    window.location.reload();
   }
 }
