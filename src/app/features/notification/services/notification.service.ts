@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Messaging, getToken, onMessage } from '@angular/fire/messaging';
+import { Messaging, getToken } from '@angular/fire/messaging';
 import { environment } from '../../../../environments/environment';
 import { ApiService } from '../../../core/services/api/api.service';
 
@@ -10,50 +10,44 @@ export class NotificationService {
   private _messaging = inject(Messaging);
   private api = inject(ApiService);
 
+  swRegistration?: ServiceWorkerRegistration;
+
+  // Obtiene el token del dispositivo
   async getDeviceToken() {
     try {
-      const registration = await navigator.serviceWorker.register(
-        'firebase-messaging-sw.js'
-      );
-
-      // Wait for serviceWorker.ready
-      await navigator.serviceWorker.ready;
-
       const token: string = await getToken(this._messaging, {
         vapidKey: environment.vapidKey,
-        serviceWorkerRegistration: registration,
+        serviceWorkerRegistration: this.swRegistration,
       });
 
       return token;
     } catch (error) {
-      // console.log('Token error', error);
+      console.error('Token error', error);
       return null;
     }
   }
 
+  // Registra el token del dispositivo
   async saveFcmToken() {
+    await this.registerServiceWorker();
     const token = await this.getDeviceToken();
+    console.log('Token', token);
     if (token) {
-      // console.log(token);
       this.api
         .post(`notification/save-device-fcm-token`, {
           token: token,
         })
-        .subscribe({
-          next: () => {
-            // this.onMessage();
-          },
-        });
+        .subscribe();
     }
   }
 
-  onMessage(): void {
-    onMessage(this._messaging, {
-      next: (payload) => {
-        // console.log('Message', payload);
-      },
-      error: (error) => console.log('Message error', error),
-      complete: () => console.log('Done listening to messages'),
-    });
+  // Registra el service worker
+  async registerServiceWorker() {
+    this.swRegistration = await navigator.serviceWorker.register(
+      'firebase-messaging-sw.js'
+    );
+
+    // Wait for serviceWorker.ready
+    await navigator.serviceWorker.ready;
   }
 }

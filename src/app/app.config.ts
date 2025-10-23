@@ -1,21 +1,21 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import {
+  InMemoryScrollingFeature,
   InMemoryScrollingOptions,
   provideRouter,
   withComponentInputBinding,
-  InMemoryScrollingFeature,
   withInMemoryScrolling,
 } from '@angular/router';
 
-import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { provideAngularSvgIcon } from 'angular-svg-icon';
-import { tokenInterceptor } from './core/interceptors/token/token.interceptor';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getMessaging, provideMessaging } from '@angular/fire/messaging';
-import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideOAuthClient } from 'angular-oauth2-oidc';
+import { provideAngularSvgIcon } from 'angular-svg-icon';
 import { environment } from '../environments/environment';
+import { routes } from './app.routes';
+import { tokenInterceptor } from './core/interceptors/token/token.interceptor';
 
 const scrollConfig: InMemoryScrollingOptions = {
   scrollPositionRestoration: 'enabled',
